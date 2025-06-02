@@ -69,7 +69,8 @@ async function summaryReportHtml (result, config) {
     const html = await buildHtmlSection('report.html', data, true);
 
     // save report to config.reporterOptions.output
-    const folder = path.resolve(process.env.INIT_CWD, config.reporterOptions.output);
+    const endPath = config.reporterOptions.output || 'test_report';
+    const folder = path.resolve(process.env.INIT_CWD, endPath);
 
     // save report to folder
     reportUtils.saveReport(folder, 'summary-report.html', html);
