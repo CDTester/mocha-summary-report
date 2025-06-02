@@ -1,0 +1,60 @@
+{
+    "env":{
+        "node": true,
+        "mocha": true,
+        "es2021": true
+    },
+    "extends": [
+        "standard"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaVersion": "latest",
+        "sourceType": "module"
+    },
+    "plugins":[
+        "@typescript-eslint", "mocha", "chai-friendly"
+    ],
+    "rules": {
+        "array-bracket-newline": ["error", {"minItems": 5, "multiline": true}],
+        "array-bracket-spacing": ["error", "never", {"objectsInArrays": true, "arraysInArrays": true}],
+        "arrow-body-style": "off",
+        "brace-style": ["error", "stroustrup"],
+        "camelcase": ["error", {"ignoreImports": true}],
+        "dot-notation": "off",
+        "no-console": "warn",
+        "eol-last": "off",
+        "lines-around-comment": ["error", {"beforeBlockComment": true, "afterBlockComment": false, "beforeLineComment": true, "afterLineComment": false, "allowBlockStart": true }],
+        "max-len": ["error", {"code": 225, "comments": 225, "ignoreUrls": true}],
+        "mocha/no-exclusive-tests": "off",
+        "new-cap": "off",
+        "no-const-assign": "error",
+        "no-debugger": "error",
+        "no-dupe-else-if": "error",
+        "no-dupe-keys": "error",
+        "no-duplicate-imports": "error",
+        "no-duplicate-case": "error",
+        "no-extra-semi": "error",
+        "no-floating-decimal": "error",
+        "no-func-assign": "error",
+        "no-irregular-whitespace": "error",
+        "no-mixed-spaces-and-tabs": ["error","smart-tabs"],
+        "no-multi-spaces": ["error", {"ignoreEOLComments": true}],
+        "no-multi-str": "error",
+        "no-multiple-empty-lines": ["error",{"max":2, "maxEOF":1}],
+        "no-return-assign": ["warn", "always"],
+        "no-trailing-spaces": ["error", {"ignoreComments": true}],
+        "no-undef": "off",
+        "no-unneeded-ternary": "off",
+        "no-unreachable": "error",
+        "no-unused-expressions": "off",
+        "no-unused-vars": "error",
+        "no-var": "error",
+        "no-void": "off",
+        "padded-blocks": "off",
+        "prefer-const": "warn",
+        "semi": ["error", "always"],
+        "quotes": "off",
+        "vars-on-top": "warn"
+    }
+}
