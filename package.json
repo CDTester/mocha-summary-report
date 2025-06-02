@@ -1,0 +1,46 @@
+{
+  "name": "summaryreport",
+  "version": "1.0.0",
+  "description": "Generate a summary report of all suites as a HTML file, console log and text file",
+  "scripts": {
+    "test": "mocha --config ./.mocharc.js --no-warnings --no-depreciation",
+    "eslint": "node node_modules/eslint/bin/eslint.js -f stylish"
+  },
+  "keywords": [
+    "mocha",
+    "reporter",
+    "summary"
+  ],
+  "repository": {
+  "type": "git",
+  "url": "https://github.com/CDTester/mocha-summary-report"
+  },
+  "author": "Chris Day",
+  "license": "MIT",
+  "dependencies": {
+    "fs-extra": "^11.1.1",
+    "handlebars": "^4.7.8",
+    "mocha": "^11.5.0",
+    "moment": "^2.30.1",
+    "path": "^0.12.7",
+    "summaryreport": "./src/summaryreport"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.3.3",
+    "@types/mocha": "^10.0.1",
+    "@types/mochawesome": "^6.2.4",
+    "@types/node": "^22.9.0",
+    "@typescript-eslint/eslint-plugin": "5.57.0",
+    "@typescript-eslint/parser": "5.57.0",
+    "chai": "^4.3.6",
+    "eslint": "8.57.1",
+    "eslint-config-standard": "17.1.0",
+    "eslint-plugin-mocha": "10.5.0",
+    "eslint-plugin-chai-friendly": "0.7.4",
+    "mocha-multi-reporters": "^1.5.1",
+    "mocha-steps": "^1.3.0",
+    "mochawesome": "^7.1.3",
+    "ts-node": "^10.7.0",
+    "typescript": "^5.7.2"
+  }
+}
