@@ -1,0 +1,52 @@
+        <h2 class="col-xs-12 col-sm-12 col-md-12 col-lg-12">Summary</h2>
+
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 padding-left-right-5">
+          <div class="panel panel-primary">
+            <div class="panel-heading lead no-margin">Test Suite Summary</div>
+            <div class="panel-body">
+              <div class="col-xs-8 col-sm-8 col-md-8 col-lg-7 padding-left-right-5">
+                <div class="col-xs-8 col-sm-5 col-md-4 col-lg-3 padding-left-right-5-ellipsis"><b>Run:</b></div>
+                <div class="col-xs-4 col-sm-7 col-md-8 col-lg-9 padding-left-right-5">{{totalTests}}</div>
+                <div class="col-xs-8 col-sm-5 col-md-4 col-lg-3 padding-left-right-5-ellipsis"><b>Passed:</b></div>
+                <div class="col-xs-4 col-sm-7 col-md-8 col-lg-9 padding-left-right-5">{{totalTestsPassed}}</div>
+                <div class="col-xs-8 col-sm-5 col-md-4 col-lg-3 padding-left-right-5-ellipsis"><b>Skipped:</b></div>
+                <div class="col-xs-4 col-sm-7 col-md-8 col-lg-9 padding-left-right-5">{{totalTestsSkipped}}</div>
+                <div class="col-xs-8 col-sm-5 col-md-4 col-lg-3 padding-left-right-5-ellipsis"><b>Failed:</b></div>
+                <div class="col-xs-4 col-sm-7 col-md-8 col-lg-9 padding-left-right-5">{{totalTestsFailed}}</div>
+              </div>
+              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-5 {{testPassedRateColor}} text-center">
+                <div class="no-margin"><b>Passed Rate:</b></div>
+                <div class="col lg-percentage hidden-xs hidden-sm hidden-md">{{testPassedRate}}%</div>
+                <div class="col md-percentage hidden-xs hidden-sm hidden-lg">{{testPassedRate}}%</div>
+                <div class="col sm-percentage hidden-xs hidden-md hidden-lg">{{testPassedRate}}%</div>
+                <div class="col xs-percentage hidden-sm hidden-md hidden-lg">{{testPassedRate}}%</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 padding-left-right-5">
+          <div class="panel panel-primary">
+            <div class="panel-heading lead no-margin">Test Step Summary</div>
+              <div class="panel-body">
+                <div class="col-xs-8 col-sm-8 col-md-8 col-lg-7 padding-left-right-5">
+                  <div class="col-xs-8 col-sm-7 col-md-4 col-lg-3 padding-left-right-5-ellipsis"><b>Run:</b></div>
+                  <div class="col-xs-4 col-sm-5 col-md-8 col-lg-9 padding-left-right-5">{{totalTestSteps}}</div>
+                  <div class="col-xs-8 col-sm-7 col-md-4 col-lg-3 padding-left-right-5-ellipsis"><b> Passed:</b></div>
+                  <div class="col-xs-4 col-sm-5 col-md-8 col-lg-9 padding-left-right-5">{{totalPassedSteps}}</div>
+                  <div class="col-xs-8 col-sm-7 col-md-4 col-lg-3 padding-left-right-5-ellipsis"><b>Skipped:</b></div>
+                  <div class="col-xs-4 col-sm-5 col-md-8 col-lg-9 padding-left-right-5">{{totalSkippedSteps}}</div>
+                  <div class="col-xs-8 col-sm-7 col-md-4 col-lg-3 padding-left-right-5-ellipsis"><b>Failed:</b></div>
+                  <div class="col-xs-4 col-sm-5 col-md-8 col-lg-9 padding-left-right-5">{{totalFailedSteps}}</div>
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-5 {{stepPassedRateColor}} text-center">
+                  <div class="no-margin"><b>Passed Rate:</b></div>
+                  <div class="col lg-percentage hidden-xs hidden-sm hidden-md">{{testStepPassedRate}}%</div>
+                  <div class="col md-percentage hidden-xs hidden-sm hidden-lg">{{testStepPassedRate}}%</div>
+                  <div class="col sm-percentage hidden-xs hidden-md hidden-lg">{{testStepPassedRate}}%</div>
+                  <div class="col xs-percentage hidden-sm hidden-md hidden-lg">{{testStepPassedRate}}%</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
