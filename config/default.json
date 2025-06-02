@@ -1,0 +1,29 @@
+{
+    "reporterEnabled": "summaryreport,mochawesome",
+    "mochawesomeReporterOptions": {
+        "inline": true,
+        "code": false,
+        "charts": true,
+        "json": false,
+        "html": true,
+        "quiet": false,
+        "reportDir": "test_report",
+        "reportFilename": "test-report.html",
+        "reportPageTitle": "Test Report"
+    },
+    "summaryreportReporterOptions": {
+        "environmentVar": "npm_config_testenv",
+        "projectName": "npm_config_zephyr_project_name",
+        "projectVersion": "npm_config_zephyr_version",
+        "projectCycle": "npm_config_zephyr_cycle",
+        "output": "test_report",
+        "testIDPrefix": "$",
+        "tagPrefix": "@",
+        "consoleSummary": true,
+        "textFileSummary": true,
+        "htmlSummary": true,
+        "passRateGreen": 90,
+        "passRateAmber": 75,
+        "otherReportLink": "test_report/test-report.html"
+    }
+}
