@@ -1,0 +1,61 @@
+{
+  "name": "EVT1",
+  "api": {
+    "tv": {
+      "baseUrl": "http://api.tvmaze.com/"
+    },
+    "app2": {
+      "baseUrl": "http://",
+      "auth": "shhhhh"
+    }
+  },
+  "db": {
+    "cloudSql": {
+      "type": "Cloud",
+      "sequelizeUri": "mssql://username:password@dbUrl:port",
+      "sequelizeConfig": {
+        "pool": {
+          "max": 10,
+          "min": 0,
+          "idle": 25000,
+          "acquire": 25000,
+          "requestTimeout": 360000
+        },
+        "dialectOptions": {
+          "options": {
+            "encrypt": true
+          }
+        }
+      }
+    },
+    "cloudPostgres": {
+      "type": "Cloud",
+      "sequelizeUri": "postgres://username:password@dbUrl:port/db",
+      "sequelizeConfig": {
+        "pool": {
+          "max": 10,
+          "min": 0,
+          "idle": 25000,
+          "acquire": 25000,
+          "requestTimeout": 360000
+        },
+        "dialect": "postgres"
+      }
+    },
+    "sybase": {
+          "type": "sybase",
+          "host": "hostname",
+          "port": 5100,
+          "username": "username",
+          "password": "password",
+          "database": "dbName"
+      }
+  },
+  "aws": {
+    "S3Bucket": {
+      "env": "evt1",
+      "platform": "abc",
+      "bucketProdDef": "sub-folder"
+    }
+  }
+}
