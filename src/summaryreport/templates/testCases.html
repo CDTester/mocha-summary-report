@@ -1,0 +1,97 @@
+        <h2 class="col-xs-12 col-sm-12 col-md-12 col-lg-12">Suites</h2>
+
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 padding-left-right-5">
+          <div class="panel panel-primary">
+            {{#if this.[0].otherReport}}
+              <div class="panel-heading lead no-margin">
+                Test Cases   
+                <span class="right">
+                    <a class="btn btn-default" href={{this.[0].reportLink}} target="_blank" role="button">Test Report</a>
+                    <span class="glyphicon glyphicon-arrow-left"></span><span class="font-size-085em"> Click button for other test reports</span>
+                </span>
+              </div>
+            {{else}}
+              <div class="panel-heading lead no-margin">Test Cases</div>
+            {{/if}}
+            <div class="panel-body">
+              <table class="table table-responsive table-hover table-font-14">
+                <thead>
+                  <tr>
+                    <th class="col-xs-1 col-sm-1 col-md-1 col-lg-1">Expand</th>
+                    <th class="col-xs-1 col-sm-1 col-md-1 col-lg-1">Test ID</th>
+                    <th class="col-xs-2 col-sm-2 col-md-2 col-lg-2">Tags</th>
+                    <th class="col-xs-5 col-sm-5 col-md-5 col-lg-5">Test Scenario</th>
+                    <th class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                      <span class="text-success">Passed</span> / 
+                      <span class="text-info">Skipped</span> / 
+                      <span class="text-danger">Failed</span>
+                    </th>
+                    <th class="col-xs-1 col-sm-1 col-md-1 col-lg-1">Duration (s)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                {{#each this as | test |}}
+                  <tr data-toggle="collapse" id="table{{test.index}}" data-target=".table{{test.index}}">
+                    <td class="col-md-1">
+                      <button class="btn btn-default btn-sm">
+                        <span class="glyphicon glyphicon-plus"></span>
+                      </button>
+                    </td>
+                    <td><span class="font-size-085em">{{{test.testID}}}</span></td>
+                    <td>
+                      {{#each this.tags as | tag |}}
+                      <span class="font-size-085em label label-primary">{{{tag}}}&nbsp;</span>
+                      {{/each}}
+                    </td>
+                    <td><span class="font-size-085em">{{{test.title}}}</span></td>
+                    <td>
+                      <div class="progress no-margin">
+                        <div class="progress-bar progress-bar-success font-size-085em" role="progressbar" style="width: {{test.passedPercent}}%">
+                          {{test.passedSteps}}
+                        </div>
+                        <div class="progress-bar progress-bar-info font-size-085em" role="progressbar" style="width: {{test.skippedPercent}}%">
+                          {{test.skippedSteps}}
+                        </div>
+                        <div class="progress-bar progress-bar-danger font-size-085em" role="progressbar" style="width: {{test.failedPercent}}%">
+                          {{test.failedSteps}}
+                        </div>
+                      </div>
+                    </td>
+                    <td>{{test.duration}}</td>
+                  </tr>
+                  <tr class="collapse table{{test.index}}">
+                    <td colspan="1"></td>
+                    <td colspan="5">
+                      <div class="panel panel-primary">
+                        <table class="table table-striped">
+                          <thead>
+                            <tr class="info">
+                              <th class="col-xs-1 col-sm-1 col-md-1 col-lg-1 font-size-085em">Step</th>
+                              <th class="col-xs-4 col-sm-4 col-md-4 col-lg-4 font-size-085em">step description</th>
+                              <th class="col-xs-4 col-sm-4 col-md-4 col-lg-4 font-size-085em">Error</th>
+                              <th class="col-xs-2 col-sm-2 col-md-2 col-lg-2 font-size-085em">Status</th>
+                              <th class="col-xs-1 col-sm-1 col-md-1 col-lg-1 font-size-085em">Duration (s)</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                          {{#each test.steps as | step |}}
+                            <tr>
+                              <td><span class="font-size-085em">{{step.index}}</span></td>
+                              <td><span class="font-size-085em">{{step.testStepTitle}}</span></td>
+                              <td><span class="font-size-085em">{{step.error}}</span></td>
+                              <td><span class="font-size-085em label label-{{step.class}}">{{step.status}}</span></td>
+                              <td><span class="font-size-085em">{{step.duration}}</span></td>
+                            </tr>
+                          {{/each}}
+                          </tbody>
+                        </table>
+                      </div>
+                    </td>
+                  </tr>
+                {{/each}}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        
