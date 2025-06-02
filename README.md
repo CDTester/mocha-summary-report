@@ -24,14 +24,14 @@ The HTML report has a responsive web design to match most screen sizes.
 
 
 ### Small Screens
-<img align="right" src="./docs/html_summary_small.png" alt="small html report" width="60%" />
+<img align="center" src="./docs/html_summary_small.png" alt="small html report" width="60%" />
 
 This report can be turned off via the report options.
 
 
 ### Test Suite Details Section
 This Section provides information about the overall details about when and where the tests were executed. 
-<img align="center" src="./docs/html_summary_large_ci_jenkins.png" alt="large html report" width="80%" />
+<img align="center" src="./docs/html_summary_large_ci_jenkins.png" alt="CI/CD server details" width="80%" />
 
 #### Suite Details
 This sub section provides information about the:
@@ -80,14 +80,14 @@ Then provides a Passed test step execution rate.
 ### Suites Section
 #### Links to other reports
 This is how the Suites section appears when no other reports are used during the Mocha test execution.
-<img align="center" src="./docs/html_summary_without_other_reports.png" alt="large html report" width="80%" />
+<img align="center" src="./docs/html_summary_without_other_reports.png" alt="test suite without external report link" width="80%" />
 
 This is how the Suites section appears when other reports are used during the Mocha test execution. A button is made available that opens the other report in a new browser tab.
-<img align="center" src="./docs/html_summary_with_other_reports.png" alt="large html report" width="80%" />
+<img align="center" src="./docs/html_summary_with_other_reports.PNG" alt="test suite with external report link" width="80%" />
 
 
 #### Test Suite run information
-<img align="center" src="./docs/html_summary_without_other_reports.png" alt="large html report" width="80%" />
+<img align="center" src="./docs/html_summary_without_other_reports.png" alt="Test Suite details" width="80%" />
 
 This section Provides detais of each test suite, including:
 - The Test ID. This should be a unique code that can identify your test on your test management tool. In this example, Zephyr tests are located on Jira and will have a Jira issue key. The test ID should be placed on the Mocha Describe feature where tags are detailed. The Test ID prefix can be configured in the reporter options.
@@ -98,7 +98,7 @@ This section Provides detais of each test suite, including:
 
 
 #### Test Step information
-<img align="center" src="./docs/html_test_steps.png" alt="large html report" width="80%" />
+<img align="center" src="./docs/html_test_steps.png" alt="test step details" width="80%" />
 
 Each test suite can be expanded to reveal more details about the test steps status by clicking on the + icon in the Expand column. This new section shows the test step:
 - Number.
