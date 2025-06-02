@@ -30,7 +30,6 @@ function summaryReport (summary, _options) {
       suiteNumber++;
 
       // add test suite details to the results object
-      console.log(`summary.on EVENT_SUITE_END: suite.title = ${suite.title}`)
       const testDetails = testResultBuilder.buildTestCaseResults(suite, config, suiteNumber);
       if (testDetails !== undefined) results.tests.push(testDetails);
 
@@ -61,9 +60,9 @@ function summaryReport (summary, _options) {
     const infoDetails = testResultBuilder.buildSuitesInfo(results, config);
     results.info = infoDetails;
 
-    if (config.reporterOptions.consoleSummary) summaryGenerator.summaryReportConsole(results);
-    if (config.reporterOptions.textFileSummary) summaryGenerator.summaryReportEmail(results, config);
-    if (config.reporterOptions.htmlSummary) summaryGenerator.summaryReportHtml(results, config);
+    if (config.reporterOptions.consoleSummary === undefined || config.reporterOptions.consoleSummary) summaryGenerator.summaryReportConsole(results);
+    if (config.reporterOptions.textFileSummary === undefined || config.reporterOptions.textFileSummary) summaryGenerator.summaryReportEmail(results, config);
+    if (config.reporterOptions.htmlSummary === undefined || config.reporterOptions.htmlSummary) summaryGenerator.summaryReportHtml(results, config);
 
   });
 }

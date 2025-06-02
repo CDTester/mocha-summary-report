@@ -16,10 +16,10 @@ function buildTestCaseResults (suite, _config, index) {
   if (suite.tests.length > 0) {
 
     // get tag value from config
-    const tagPrefix = _config.reporterOptions.tagPrefix;
+    const tagPrefix = _config.reporterOptions.tagPrefix || '@';
 
     // get testID value from config
-    const testIDPrefix = _config.reporterOptions.testIDPrefix;
+    const testIDPrefix = _config.reporterOptions.testIDPrefix || '$';
 
     // add link if other reports are being used
     test.otherReport = (_config.reporterOptions.otherReportLink !== undefined) ? true : false;

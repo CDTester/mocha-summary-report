@@ -13,7 +13,7 @@ module.exports = {
     'inline-diffs': true,
     jobs: 3,
     package: './package.json',
-    parallel: true,
+    parallel: false,
     recursive: true,
     reporter: 'mocha-multi-reporters',
     'reporter-option': ['configFile=./config/default.json'],
