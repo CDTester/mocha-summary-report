@@ -24,7 +24,7 @@ export default class envData {
     let envData;
 
     const pth = path.resolve(process.cwd(), 'config', 'environments', `${envName}.json`);
-    console.log(`Using environment data from ${pth} for test ${this._test}`);
+    console.log(`\x1b[92m Using environment config from ${pth} for test ${this._test}  \x1b[0m`);
 
     if (fs.existsSync(pth)) {
       try {

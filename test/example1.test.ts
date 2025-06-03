@@ -7,13 +7,14 @@ import { wait } from '../src/date';
 
 const env = new envData('example1.test.ts').getEnvData;
 
-describe(`Example test 1 @componentA @smoke $JIRA-1234`, function () {
+describe(`Example test 1 @componentA @smoke $JIRA-1234`, async function () {
 
   step(`show environment data`, async function () {
     addContext(this, {
       title: `env Data`,
       value: env
     })
+    await wait(111);
   });
 
   step(`Expect 1 to be 1`, async function () {

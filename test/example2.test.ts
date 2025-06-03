@@ -6,7 +6,7 @@ import { wait } from '../src/date';
 
 const env = new envData('example2.test.ts').getEnvData;
 
-describe(`Example test 2 @componentB @smoke $JIRA-1235`, function () {
+describe(`Example test 2 @componentB @smoke $JIRA-1235`, async function () {
 
   step(`Expect [1,2,3] to include 2`, async function () {
     expect([1,2,3]).to.include(2);
