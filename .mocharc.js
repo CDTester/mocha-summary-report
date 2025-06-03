@@ -13,13 +13,14 @@ module.exports = {
     'inline-diffs': true,
     jobs: 3,
     package: './package.json',
-    parallel: false,
+    parallel: true,
     recursive: true,
     reporter: 'mocha-multi-reporters',
     'reporter-option': ['configFile=./config/default.json'],
     require: [
         "mocha-steps",
-        "ts-node/register"
+        "ts-node/register",
+        "mochawesome/register"
     ],
     retries: 0,
     slow: '600',

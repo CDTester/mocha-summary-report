@@ -22,8 +22,8 @@
         "consoleSummary": true,
         "textFileSummary": true,
         "htmlSummary": true,
-        "passRateGreen": 90,
-        "passRateAmber": 75,
+        "passRateGreen": 80,
+        "passRateAmber": 70,
         "otherReportLink": "test_report/test-report.html"
     }
 }

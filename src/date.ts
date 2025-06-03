@@ -5,7 +5,7 @@ import moment from "moment";
  * @param {number} ms - time in milliseconds
  */
 export async function wait (ms) {
-  console.log(`waiting ${ms} milliseconds`);
+  console.log(`\x1b[90m \t waiting ${ms} milliseconds \x1b[0m`);
   await new Promise(resolve => setTimeout(resolve, ms));
 }
 

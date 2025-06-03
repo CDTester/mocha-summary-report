@@ -2,6 +2,95 @@ const envCi = require('./envCi');
 const path = require('path');
 const moment = require('moment');
 
+/**
+ * buildSuiteStart - Starts to build a summary of a test suite run when test execution is run in parallel
+ * @param {Mocha.Suite} suite contains details of the suite run
+ * @param {object} _config reporter options for suiteReport
+ * @param {number} index number assigned to the suite to describe the order in which the suite ran
+ * @returns {object} Object contains suite run summary
+ */
+function buildSuiteStart (suite, _config, index) {
+  const _suite = {};
+
+  // get tag value from config
+  const tagPrefix = _config.reporterOptions.tagPrefix || '@';
+
+  // get testID value from config
+  const testIDPrefix = _config.reporterOptions.testIDPrefix || '$';
+
+  // add link if other reports are being used
+  _suite.otherReport = (_config.reporterOptions.otherReportLink !== undefined) ? true : false;
+  _suite.reportLink = (_config.reporterOptions.otherReportLink !== undefined) ? path.resolve(process.env.INIT_CWD, _config.reporterOptions.otherReportLink) : "";
+
+  // test suite index
+  _suite.index = index;
+
+  // get test title and remove tags and testID from title
+  _suite.title = suite.title.split(' ').filter((title) => !title.startsWith(tagPrefix) && !title.startsWith(testIDPrefix)).join(' ');
+
+  // get test tags
+  _suite.tags = suite.title.split(' ').filter((tag) => tag.startsWith(tagPrefix)).map((x) => x.substring(x.indexOf(tagPrefix) + 1));
+
+  // get testID
+  _suite.testID = suite.title.split(' ').filter((testID) => testID.startsWith(testIDPrefix)).map((x) => x.substring(x.indexOf(testIDPrefix) + 1)).join(', ');
+
+  // initialise test steps and other suite data
+  _suite.steps = [];
+  _suite.totalSteps = 0;
+  _suite.passedSteps = 0;
+  _suite.failedSteps = 0;
+  _suite.skippedSteps = 0;
+  _suite.passedPercent = '';
+  _suite.skippedPercent = '';
+  _suite.failedPercent = '';
+  _suite.duration = '';
+
+  return _suite;
+}
+
+/**
+ * buildTestStepStart - Starts to build a summary of a test step when test execution is run in parallel
+ * @param {Mocha.Suite} suite contains details of the suite run
+ * @param {number} index number assigned to the suite to describe the order in which the suite ran
+ * @returns {object} Object contains suite run summary
+ */
+function buildTestStepStart (step, index) {
+
+  let stepIndex = index + 1;
+  const stepDetails = {};
+  stepDetails.index = stepIndex++;
+  stepDetails.testStepTitle = step.title;
+  stepDetails.passed = (step.state === 'passed') ? 1 : 0;
+  stepDetails.failed = (step.state === 'failed') ? 1 : 0;
+  stepDetails.skipped = (step.state === 'pending') ? 1 : 0;
+  stepDetails.status = (stepDetails.passed === 1) ? "Passed" : (stepDetails.skipped === 1) ? "Skipped" : "Failed";
+  stepDetails.class = (stepDetails.passed === 1) ? "success" : (stepDetails.skipped === 1) ? "info" : "danger";
+  stepDetails.duration = step.duration !== undefined ? (step.duration / 1000).toFixed(3) : '0.000';
+  stepDetails.error = step.err ? step.err.message : '';
+
+  return stepDetails;
+}
+
+/**
+ * buildSuiteEnd - Summarises the summary of a test suite when test execution is run in parallel
+ * @param {Mocha.Suite} suite contains details of the suite run
+ * @returns {object} Object contains suite run summary
+ */
+
+function buildSuiteEnd (suite) {
+  // get test step results
+  suite.totalSteps = suite.steps.length;
+  suite.passedSteps = suite.steps.filter(e => e.passed === 1).length;
+  suite.failedSteps = suite.steps.filter(e => e.failed === 1).length;
+  suite.skippedSteps = suite.steps.filter(e => e.skipped === 1).length;
+  suite.passedPercent = `${Number(suite.passedSteps / suite.totalSteps * 100).toFixed(2)}` || '0';
+  suite.skippedPercent = `${Number(suite.skippedSteps / suite.totalSteps * 100).toFixed(2)}` || '0';
+  suite.failedPercent = `${Number(suite.failedSteps / suite.totalSteps * 100).toFixed(2)}` || '0';
+
+  suite.duration = ((suite.steps.reduce((accumulator, step) => accumulator + Number(step.duration), 0))).toFixed(3) || '0.000';
+
+  return suite;
+}
 
 /**
  * buildTestCaseResults - Builds a summary of a suite run
@@ -12,7 +101,6 @@ const moment = require('moment');
  */
 function buildTestCaseResults (suite, _config, index) {
   const test = {};
-  console.log(`TRB-buildTestCase: suite.tests = ${suite.tests}`)
   if (suite.tests.length > 0) {
 
     // get tag value from config
@@ -110,10 +198,10 @@ function buildSummaryResults (tests, _config) {
   summary.testStepPassedRate = ((summary.totalPassedSteps / summary.totalTestSteps) * 100).toFixed(2) || "0.00";
 
   // The passed rate can be assigned a colour of red/amber/green based on custom criteria set out in the reporter options
-  if (summary.testStepPassedRate > 90) {
+  if (summary.testStepPassedRate >= green) {
     summary.stepPassedRateColor = 'bg-green';
   }
-  else if (summary.testStepPassedRate > 50) {
+  else if (summary.testStepPassedRate >= amber && summary.testStepPassedRate < green) {
     summary.stepPassedRateColor = 'bg-amber';
   }
   else {
@@ -123,7 +211,6 @@ function buildSummaryResults (tests, _config) {
   // get suite run duration
   summary.totalDuration = tests.reduce((accumulator, test) => accumulator + Number(test.duration), 0);
   summary.averageTestExecutionRate = (summary.totalTests / summary.totalDuration).toFixed(3);
-
   return summary;
 }
 
@@ -177,6 +264,9 @@ function buildSuitesInfo (_results, _config) {
 
 module.exports = {
   buildTestCaseResults,
+  buildSuiteStart,
+  buildSuiteEnd,
+  buildTestStepStart,
   buildSummaryResults,
   buildSuitesInfo
 };
