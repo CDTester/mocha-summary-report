@@ -1,7 +1,7 @@
-import envData from '../src/loadEnvData';
+import envData from '../src/utils/loadEnvData';
 import { expect } from 'chai';
 import { step } from 'mocha-steps';
-import { wait } from '../src/date';
+import { wait } from '../src/utils/date';
 
 
 const env = new envData('example3.test.ts').getEnvData;
