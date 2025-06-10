@@ -20,7 +20,7 @@ Provides a summary of when and where the suites were executed, a summary of all 
 
 The HTML report has a responsive web design to match most screen sizes.
 ### Large Screens
-<img align="center" src="./docs/html_summary_large_ci_local.png" alt="large html report" width="100%" />
+<img align="center" src="./docs/html_summary_large_ci_jenkins.png" alt="large html report" width="100%" />
 
 
 ### Small Screens
