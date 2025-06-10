@@ -49,6 +49,7 @@ function jenkins (_env) {
   jenkinsVariables.buildNumber = _env.BUILD_NUMBER;
   jenkinsVariables.jobName = _env.JOB_NAME;
   jenkinsVariables.name = "Jenkins";
+  jenkinsVariables.icon = "https://static-00.iconduck.com/assets.00/jenkins-original-icon-371x512-8gujah0v.png";
 
   return jenkinsVariables;
 }
@@ -61,6 +62,8 @@ function circleCi (_env) {
   circleCiVariables.buildNumber = _env.CIRCLE_BUILD_NUM;
   circleCiVariables.jobName = `${_env.CIRCLE_BUILD_NUM}.${_env.CIRCLE_NODE_INDEX}`;
   circleCiVariables.name = "CircleCI";
+  circleCiVariables.icon = "https://static-00.iconduck.com/assets.00/circleci-icon-505x512-se41irrq.png";
+
 
   return circleCiVariables;
 }
@@ -73,6 +76,7 @@ function bitbucket (_env) {
   bitbucketVariables.buildNumber = _env.BITBUCKET_BUILD_NUMBER;
   bitbucketVariables.jobName = _env.BITBUCKET_JOB_NAME;
   bitbucketVariables.name = "Bitbucket";
+  bitbucketVariables.icon = "https://static-00.iconduck.com/assets.00/bitbucket-icon-512x460-aj2zdfts.png";
 
   return bitbucketVariables;
 }
@@ -85,6 +89,7 @@ function travis (_env) {
   travisVariables.buildNumber = _env.TRAVIS_BUILD_NUMBER;
   travisVariables.jobName = _env.TRAVIS_JOB_NUMBER;
   travisVariables.name = "Travis CI";
+  travisVariables.icon = "https://static-00.iconduck.com/assets.00/travis-ci-icon-512x507-icrm19vr.png";
 
   return travisVariables;
 }
@@ -97,6 +102,7 @@ function teamCity (_env) {
   teamCityVariables.buildNumber = _env.BUILD_NUMBER;
   teamCityVariables.jobName = "--";
   teamCityVariables.name = "TeamCity";
+  teamCityVariables.icon = "https://upload.wikimedia.org/wikipedia/commons/2/29/TeamCity_Icon.svg";
 
   return teamCityVariables;
 }
@@ -109,6 +115,7 @@ function githubActions (_env) {
   githubActionsVariables.buildNumber = _env.GITHUB_RUN_ID;
   githubActionsVariables.jobName = "--";
   githubActionsVariables.name = "GitHub Actions";
+  githubActionsVariables.icon = "https://static-00.iconduck.com/assets.00/github-icon-512x489-i96zunkj.png";
 
   return githubActionsVariables;
 }
@@ -121,6 +128,7 @@ function gitlab (_env) {
   gitlabVariables.buildNumber = _env.CI_PIPELINE_ID;
   gitlabVariables.jobName = _env.CI_JOB_ID;
   gitlabVariables.name = "GitLab CI/CD";
+  gitlabVariables.icon = "https://static-00.iconduck.com/assets.00/gitlab-icon-512x471-wfbmkpzi.png";
 
   return gitlabVariables;
 }
@@ -133,6 +141,7 @@ function azureDevOps (_env) {
   azureDevOpsVariables.buildNumber = _env.BUILD_BUILDNUMBER;
   azureDevOpsVariables.jobName = "--";
   azureDevOpsVariables.name = "Azure DevOps";
+  azureDevOpsVariables.icon = "https://static-00.iconduck.com/assets.00/azuredevops-icon-512x511-xk93ro2p.png";
 
   return azureDevOpsVariables;
 }
@@ -145,6 +154,7 @@ function local (_env) {
   localVariables.buildNumber = "--";
   localVariables.jobName = "--";
   localVariables.name = "Local";
+  localVariables.icon = "https://static-00.iconduck.com/assets.00/laptop-emoji-512x512-xtenmzmj.png";
 
   return localVariables;
 }

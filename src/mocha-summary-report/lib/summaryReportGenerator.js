@@ -3,7 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 const handlebars = require('handlebars');
-const reportUtils = require('./utils');
+const utils = require('./utils');
 
 
 /**
@@ -21,10 +21,10 @@ function summaryReportConsole (result) {
   const duration = '\x1b[97m \x1b[1m Duration:\x1b[21m \x1b[96m';
 
   console.log('\x1b[93m **********************************************************************************');
-  console.log(`\x1b[93m *${totalT} ${result.summary.totalTests} \t ${passed} ${result.summary.totalTestsPassed} \t ${failed} ${result.summary.totalTestsFailed}`);
-  console.log(`\x1b[93m *${totalTS} ${result.summary.totalTestSteps} \t ${passed} ${result.summary.totalPassedSteps} \t ${failed} ${result.summary.totalTestsFailed} \t ${pending} ${result.summary.totalTestsSkipped}`);
-  console.log(`\x1b[93m *${testPercent} ${((result.summary.totalTestsPassed / result.summary.totalTests) * 100).toFixed(2)} %`);
-  console.log(`\x1b[93m *${testStepPercent} ${((result.summary.totalPassedSteps / result.summary.totalTestSteps) * 100).toFixed(2)} %`);
+  console.log(`\x1b[93m *${totalT} ${result.summary.totalTests} \t ${passed} ${result.summary.totalTestsPassed} \t ${failed} ${result.summary.totalTestsFailed} \t ${pending} ${result.summary.totalTestsSkipped}`);
+  console.log(`\x1b[93m *${totalTS} ${result.summary.totalTestSteps} \t ${passed} ${result.summary.totalPassedSteps} \t ${failed} ${result.summary.totalFailedSteps} \t ${pending} ${result.summary.totalSkippedSteps}`);
+  console.log(`\x1b[93m *${testPercent} ${result.summary.testPassedRate} %`);
+  console.log(`\x1b[93m *${testStepPercent} ${result.summary.testStepPassedRate} %`);
   console.log(`\x1b[93m *${duration} ${result.info.duration}`);
   console.log('\x1b[93m **********************************************************************************\x1b[0m');
 }
@@ -41,12 +41,13 @@ async function summaryReportEmail (result, config) {
   file.write(`Total Tests: ${result.summary.totalTests}\n`);
   file.write(`Passed Tests: ${result.summary.totalTestsPassed}\n`);
   file.write(`Failed Tests: ${result.summary.totalTestsFailed}\n`);
+  file.write(`Skipped Tests: ${result.summary.totalTestsSkipped}\n`);
   file.write(`Test Steps: ${result.summary.totalTestSteps}\n`);
   file.write(`Test Steps passed: ${result.summary.totalPassedSteps}\n`);
-  file.write(`Test Steps failed: ${result.summary.totalTestsFailed}\n`);
-  file.write(`Test Steps skipped: ${result.summary.totalTestsSkipped}\n`);
-  file.write(`Test Pass Rate: ${((result.summary.totalTestsPassed / result.summary.totalTests) * 100).toFixed(2)}%\n`);
-  file.write(`Test Step Pass Rate: ${((result.summary.totalPassedSteps / result.summary.totalTestSteps) * 100).toFixed(2)}%\n`);
+  file.write(`Test Steps failed: ${result.summary.totalFailedSteps}\n`);
+  file.write(`Test Steps skipped: ${result.summary.totalSkippedSteps}\n`);
+  file.write(`Test Pass Rate: ${result.summary.testPassedRate} %\n`);
+  file.write(`Test Step Pass Rate: ${result.summary.testStepPassedRate} %\n`);
   file.write(`Duration: ${result.info.duration}`);
   file.end();
 }
@@ -73,7 +74,7 @@ async function summaryReportHtml (result, config) {
     const folder = path.resolve(process.env.INIT_CWD, endPath);
 
     // save report to folder
-    reportUtils.saveReport(folder, 'summary-report.html', html);
+    utils.saveReport(folder, 'summary-report.html', html);
   }
   catch (e) {
     console.log('error in summary report');
