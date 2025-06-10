@@ -11,7 +11,7 @@ This report can be turned off via the report options.
 ## Text File Summary Feature
 Provides a summary of all the suites in a text file. This text file can be added to an email.
 
-<img align="center" src="./docs/text_file_summary.png" alt="summary report in text file" width="50%" />
+<img align="center" src="./docs/text_file_summary.png" alt="summary report in text file" width="30%" />
 
 This report can be turned off via the report options.
 
@@ -20,35 +20,34 @@ Provides a summary of when and where the suites were executed, a summary of all 
 
 The HTML report has a responsive web design to match most screen sizes.
 ### Large Screens
-<img align="center" src="./docs/html_summary_large_ci_local.png" alt="large html report" width="80%" />
+<img align="center" src="./docs/html_summary_large_ci_local.png" alt="large html report" width="100%" />
 
 
 ### Small Screens
-<img align="center" src="./docs/html_summary_small.png" alt="small html report" width="60%" />
+<img align="center" src="./docs/html_summary_small.png" alt="small html report" width="50%" />
 
-This report can be turned off via the report options.
 
 
 ### Test Suite Details Section
 This Section provides information about the overall details about when and where the tests were executed. 
-<img align="center" src="./docs/html_summary_suite_details_jenkins.png" alt="CI/CD server details" width="80%" />
+<img align="center" src="./docs/html_summary_suite_details_jenkins.png" alt="CI/CD server details" width="100%" />
 
 #### Suite Details
 This sub section provides information about the:
-- version of the project release that is being tested. This information comes from process.env variable, this can be set in the CI server parameters or added to npm_config_ varaibles either in your npmrc file or as a custom option on the execution line. The location can be configured in the report options.
-- test cycle that this test executed as part of. Similar to Version, this is configurable. 
-- test environment that this test executed as part of. Similar to Version, this is configurable. 
-- tags found in all the tests that were executed. Duplicate tags are removed. The tag should be placed in your test file on the Mocha Describe feature. Tags can be useful to denote what type of test (e.g. smoke, regression etc) and/or the feature of the project. The tag prefix can be configured in the reporter options. 
+- `Version` of the project release that is being tested. This information comes from process.env variable, this can be set in the CI server parameters or added to npm_config_ varaibles either in your npmrc file or as a custom option on the execution line. The location can be configured in the report options.
+- Test `Cycle` that this test executed as part of. Similar to Version, this is configurable. 
+- Test `Environment` that this test executed as part of. Similar to Version, this is configurable. 
+- `Tags` found in all the tests that were executed. Duplicate tags are removed. The tag should be placed in your test file on the Mocha Describe feature. Tags can be useful to denote what type of test (e.g. smoke, regression etc) and/or the feature of the project. The tag prefix can be configured in the reporter options. 
 
 #### Run Time Details
 This sub section provides information about the:
-- Run Date of the test execution.
-- Start Time of the the first test execution.
-- End Time of the last test execution.
-- Duration of the total test executions.
+- `Run Date` of the test execution.
+- `Start Time` of the the first test execution.
+- `End Time` of the last test execution.
+- `Duration` of the total test executions.
 
 #### CI Server Details
-This section can show some limited information about the CI/CD server the test was executed on. A custom set of functions have been created based on env-ci package, this is due to  that package uses import to load modules and I could not get it to work with the mocha-multi-reporters which usess require to load mdules. This version of the package works with the following CI servers:
+This section can show some limited information about the CI/CD server the test was executed on. A custom set of functions have been created based on `env-ci` package, this is due to that package uses `import` to load modules and I could not get it to work with the `mocha-multi-reporters` which uses `require` to load modules. This version of the package works with the following CI servers:
 - Azure Devops
 - Bitbucket
 - CircleCI
@@ -59,64 +58,70 @@ This section can show some limited information about the CI/CD server the test w
 - Travis
 
 If the tests are run on a local machine, then the sub section heading will indicate this.
-<img align="center" src="./docs/html_summary_suite_details.png" alt="CI/CD server details" width="80%" />
+<img align="center" src="./docs/html_summary_suite_details.png" alt="CI/CD server details" width="100%" />
 
 
 ### Summary Section
+<img align="center" src="./docs/html_summary_section.png" alt="CI/CD server details" width="100%" />
+
 #### Test Suite Summary
 This section provides an overall status of how many tests:
-- Were executed
-- Passed
-- Skipped, test that were not executed
-- Failed, any test that has a failed step.
+- `Run` in total
+- `Passed`, a test that has all steps passed.
+- `Skipped`, a test that was not executed.
+- `Failed`, a test that has one or more failed step.
 
 This section also provides metrics for:
-- Passed test execution rate, whch uses the formula `(passed tests / total executed tests) * 100`.
-- Test executed per second, which uses the formula `(passed tests + failed tests) / total execution time in seconds`. This metric can be used to comapre against manual test execution rates. 
+- `Passed Rate` of tests executed, whch uses the formula `(passed tests / total executed tests) * 100`.
+- `Tests/s` tests executed per second, which uses the formula `(passed tests + failed tests) / total execution time in seconds`. This metric can be used to comapre against manual test execution rates. 
 
 #### Test Step Summary
 This section provides an overall status of how many test steps:
-- were executed
-- passed
-- skipped
-- failed
+- `Run` in total
+- `Passed`, a test step that has a passed status.
+- `Skipped`, a test step that was not executed.
+- `Failed`, a test step that has a failed status.
 
-Then provides a Passed test step execution rate. 
 This section also provides metrics for:
-- Passed test step execution rate, whch uses the formula `(passed test steps / total executed Test steps) * 100`.
-- Test Steps executed per second, which uses the formula `(passed test steps + failed test steps) / total execution time in seconds`. This metric can be used to comapre against manual test execution rates. 
+- `Passed Rate` of test steps executed, whch uses the formula `(passed test steps / total executed Test steps) * 100`.
+- `Steps/s` steps executed per second, which uses the formula `(passed test steps + failed test steps) / total execution time in seconds`. This metric can be used to comapre against manual test execution rates. 
 
 
 ### Suites Section
 #### Links to other reports
 If you use other test reports like [Mochawesome](https://www.npmjs.com/package/mochawesome), you will need to use a reporter like [mocha-multi-reporters](https://www.npmjs.com/package/mocha-multi-reporters). This is how the Suites section is presented when no other reports are used during the Mocha test execution.
-<img align="center" src="./docs/html_summary_without_other_reports.png" alt="test suite without external report link" width="80%" />
+
+<img align="center" src="./docs/html_summary_without_other_reports.png" alt="test suite without external report link" width="100%" />
+
 
 This is how the Suites section is presented when other reports are used during the Mocha test execution. A link button becomes available that opens the other report in a new browser tab.
-<img align="center" src="./docs/html_summary_with_other_reports.PNG" alt="test suite with external report link" width="80%" />
+
+<img align="center" src="./docs/html_summary_with_other_reports.PNG" alt="test suite with external report link" width="100%" />
+
+This report can be turned off via the report options.
 
 
 #### Test Suite run information
-<img align="center" src="./docs/html_summary_test_cases.png" alt="Test Suite details" width="80%" />
+<img align="center" src="./docs/html_summary_test_cases.png" alt="Test Suite details" width="100%" />
 
 This section Provides detais of each test suite, including:
-- The Test ID. This should be a unique code that can identify your test on your test management tool. In this example, Zephyr tests are located on Jira and will have a Jira issue key. The test ID should be placed on the Mocha Describe feature where tags are detailed. The Test ID prefix can be configured in the reporter options. Also, the Test ID can be a link to your manual test. The url is configured in the reporter options, this will be the url base that precedes the `Test ID`.
-- Tags associated to the test. The tag should be placed in your test file on the Mocha Describe feature. Tags can be useful to denote what type of test (e.g. smoke, regression etc) and/or the feature of the project. The tag prefix can be configured in the reporter options. 
-- Test Scenario title.
-- How many steps in the tests Passed, skipped or failed.
-- The duration of the test suite in seconds. 
+- The `Test ID`. This should be a unique code that can identify your test on your test management tool. In this example, Zephyr tests are located on Jira and will have a Jira issue key. The test ID should be placed on the Mocha Describe feature where tags are detailed. The Test ID prefix can be configured in the reporter options. Also, the Test ID can be a link to your manual test. The url is configured in the reporter options, this will be the url base that precedes the `Test ID`.
+- `Tags` associated to the test. The tag should be placed in your test file on the Mocha Describe feature. Tags can be useful to denote what type of test (e.g. smoke, regression etc) and/or the feature of the project. The tag prefix can be configured in the reporter options. 
+- `Test Scenario title`. The tags at test ID are stripped from the title.
+- `Passed / Skipped / Failed` How many steps in the tests Passed, skipped or failed.
+- The `Duration` of the test suite in seconds. 
 
 
 #### Test Step information
-<img align="center" src="./docs/html_test_steps.png" alt="test step details" width="80%" />
+<img align="center" src="./docs/html_test_steps.png" alt="test step details" width="100%" />
 
 Each test suite can be expanded to reveal more details about the test steps status by clicking on the + icon in the Expand column. This new section shows the test step:
-- Number.
-- Title/description. 
-- Errors message that was produced if the test step failed.
-- Retries, the number of retries performed, not the max number of retries (unless the max limit was reached).
-- Status.
-- Duration in seconds. This duration includes the duration of each retry.
+- `Step` Number.
+- `Step description`. 
+- `Error` message that was produced if the test step failed.
+- `Retries` the number of retries performed, not the max number of retries (unless the max limit was reached).
+- `Status`.
+- `Duration` in seconds. This duration includes the duration of each retry.
 
 
 
@@ -156,7 +161,7 @@ Where the mocharc file has the following options:
     ],
 ```
 
-### --reporter-option in mocharc file points to a config file
+### Pointing the --reporter-option in mocharc file to a config file
 This option can be used when using mocha-multi-reporters.
 ```
 mocha --config .mocharc.js
