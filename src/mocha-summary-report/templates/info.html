@@ -4,14 +4,14 @@
           <div class="panel panel-primary">
             <div class="panel-heading lead no-margin">Suite Details</div>
             <div class="panel-body">
-              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 padding-left-right-5-ellipsis"><b>Version:</b></div>
+              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 padding-left-right-5 ellipsis"><b>Version:</b></div>
               <div class="col-xs-5 col-sm-8 col-md-8 col-lg-8 padding-left-right-5">{{projectVersion}}</div>
-              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 padding-left-right-5-ellipsis"><b>Cycle:</b></div>
+              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 padding-left-right-5 ellipsis"><b>Cycle:</b></div>
               <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 padding-left-right-5">{{projectCycle}}</div>
-              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 padding-left-right-5-ellipsis"><b>Environment:</b></div>
+              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 padding-left-right-5 ellipsis"><b>Environment:</b></div>
               <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 padding-left-right-5">{{environment}}</div>
-              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 padding-left-right-5-ellipsis"><b>Tags:</b></div>
-              <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 padding-left-right-5 padding-bottom-5">
+              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 padding-left-right-5 ellipsis"><b>Tags:</b></div>
+              <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 padding-left-right-5 padding-bottom-5 overflow-scroll">
               {{#each tags}}
                 <span class="label label-primary">{{tag}}</span>&nbsp;
               {{/each}}
@@ -25,13 +25,13 @@
         <div class="panel panel-primary">
           <div class="panel-heading lead no-margin">Run Time Details</div>
           <div class="panel-body">
-            <div class="col-xs-6 col-sm-5 col-md-6 col-lg-5 padding-left-right-5-ellipsis"><b>Run Date:</b></div>
+            <div class="col-xs-6 col-sm-5 col-md-6 col-lg-5 padding-left-right-5 ellipsis"><b>Run Date:</b></div>
             <div class="col-xs-6 col-sm-7 col-md-6 col-lg-7 padding-left-right-5">{{runDate}}</div>
-            <div class="col-xs-6 col-sm-5 col-md-6 col-lg-5 padding-left-right-5-ellipsis"><b>Start Time:</b></div>
+            <div class="col-xs-6 col-sm-5 col-md-6 col-lg-5 padding-left-right-5 ellipsis"><b>Start Time:</b></div>
             <div class="col-xs-6 col-sm-7 col-md-6 col-lg-7 padding-left-right-5">{{startTime}}</div>
-            <div class="col-xs-6 col-sm-5 col-md-6 col-lg-5 padding-left-right-5-ellipsis"><b>End Time:</b></div>
+            <div class="col-xs-6 col-sm-5 col-md-6 col-lg-5 padding-left-right-5 ellipsis"><b>End Time:</b></div>
             <div class="col-xs-6 col-sm-7 col-md-6 col-lg-7 padding-left-right-5">{{endTime}}</div>
-            <div class="col-xs-6 col-sm-5 col-md-6 col-lg-5 padding-left-right-5-ellipsis"><b>Duration (s):</b></div>
+            <div class="col-xs-6 col-sm-5 col-md-6 col-lg-5 padding-left-right-5 ellipsis"><b>Duration (s):</b></div>
             <div class="col-xs-6 col-sm-7 col-md-6 col-lg-7 padding-left-right-5 padding-bottom-5">{{duration}}</div>
           </div>
         </div>
@@ -42,16 +42,21 @@
         <div class="panel panel-primary">
           <div class="panel-heading lead no-margin">Ran on {{ciServer}}</div>
           <div class="panel-body">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 padding-left-right-5">
-              <div class="col-xs-3 col-sm-2 col-md-4 col-lg-4 padding-left-right-5-ellipsis"><b>Build Number:</b></div>
+            <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 padding-left-right-5">
+              <div class="col-xs-3 col-sm-2 col-md-4 col-lg-4 padding-left-right-5 ellipsis"><b>Build Number:</b></div>
               <div class="col-xs-9 col-sm-10 col-md-8 col-lg-8 padding-left-right-5">{{buildNumber}}</div>
-              <div class="col-xs-3 col-sm-2 col-md-4 col-lg-4 padding-left-right-5-ellipsis"><b>Job Name:</b></div>
+              <div class="col-xs-3 col-sm-2 col-md-4 col-lg-4 padding-left-right-5 ellipsis"><b>Job Name:</b></div>
               <div class="col-xs-9 col-sm-10 col-md-8 col-lg-8 padding-left-right-5">{{jobName}}</div>
-              <div class="col-xs-3 col-sm-2 col-md-4 col-lg-4 padding-left-right-5-ellipsis"><b>Build URL:</b></div>
+              <div class="col-xs-3 col-sm-2 col-md-4 col-lg-4 padding-left-right-5 ellipsis"><b>Build URL:</b></div>
               <div class="col-xs-9 col-sm-10 col-md-8 col-lg-8 padding-left-right-5 padding-bottom-5">
                 <a href={{buildUrl}} target="_blank">{{buildUrl}}</a>
               </div>
               <div class="hidden-xs hidden-sm col-md-12 col-lg-12 padding-left-right-5"><b>&nbsp;</b></div>
+            </div>
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 padding-left-right-5">
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 padding-left-right-5">
+                <img src="{{icon}}" class="icon"><img>
+              </div>
             </div>
           </div>
         </div>

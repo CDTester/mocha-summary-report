@@ -1,0 +1,12 @@
+config
+docs
+node_modules
+src/utils
+test
+test_report
+.eslintrc.json
+.gitignore
+.mocharc.js
+.nnpmrc
+package-lock.json
+tsconfig.json

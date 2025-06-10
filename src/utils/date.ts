@@ -3,9 +3,10 @@ import moment from "moment";
 /**
  * wait a specific amount of time
  * @param {number} ms - time in milliseconds
+ * @param {boolean} print - Optional, defaults to true. This option prints the wait time in the console output.
  */
-export async function wait (ms) {
-  console.log(`\x1b[90m \t waiting ${ms} milliseconds \x1b[0m`);
+export async function wait (ms, print = true) {
+  print ? console.log(`\x1b[90m \t waiting ${ms} milliseconds \x1b[0m`) : '';
   await new Promise(resolve => setTimeout(resolve, ms));
 }
 
