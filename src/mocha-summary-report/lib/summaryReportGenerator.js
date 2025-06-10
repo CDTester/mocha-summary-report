@@ -16,16 +16,18 @@ function summaryReportConsole (result) {
   const passed = '\x1b[97m \x1b[1m Passed:\x1b[21m \x1b[96m';
   const failed = '\x1b[97m \x1b[1m Failed:\x1b[21m \x1b[96m';
   const pending = '\x1b[97m \x1b[1m Pending:\x1b[21m \x1b[96m';
-  const testPercent = '\x1b[97m \x1b[1m TEST_PASS_PERCENTAGE:     \x1b[21m \x1b[96m';
-  const testStepPercent = '\x1b[97m \x1b[1m TEST_STEP_PASS_PERCENTAGE:\x1b[21m \x1b[96m';
-  const duration = '\x1b[97m \x1b[1m Duration:\x1b[21m \x1b[96m';
+  const test = `${totalT} ${result.summary.totalTests} \t ${passed} ${result.summary.totalTestsPassed} \t ${failed} ${result.summary.totalTestsFailed} \t ${pending} ${result.summary.totalTestsSkipped}`;
+  const step = `${totalTS} ${result.summary.totalTestSteps} \t ${passed} ${result.summary.totalPassedSteps} \t ${failed} ${result.summary.totalFailedSteps} \t ${pending} ${result.summary.totalSkippedSteps}`;
+  const testPercent = `\x1b[97m \x1b[1m TEST_PASS_PERCENTAGE:     \x1b[21m \x1b[96m  ${result.summary.testPassedRate} %`;
+  const testStepPercent = `\x1b[97m \x1b[1m TEST_STEP_PASS_PERCENTAGE:\x1b[21m \x1b[96m  ${result.summary.testStepPassedRate} %`;
+  const duration = `\x1b[97m \x1b[1m Duration:\x1b[21m \x1b[96m ${result.info.duration}`;
 
   console.log('\x1b[93m **********************************************************************************');
-  console.log(`\x1b[93m *${totalT} ${result.summary.totalTests} \t ${passed} ${result.summary.totalTestsPassed} \t ${failed} ${result.summary.totalTestsFailed} \t ${pending} ${result.summary.totalTestsSkipped}`);
-  console.log(`\x1b[93m *${totalTS} ${result.summary.totalTestSteps} \t ${passed} ${result.summary.totalPassedSteps} \t ${failed} ${result.summary.totalFailedSteps} \t ${pending} ${result.summary.totalSkippedSteps}`);
-  console.log(`\x1b[93m *${testPercent} ${result.summary.testPassedRate} %`);
-  console.log(`\x1b[93m *${testStepPercent} ${result.summary.testStepPassedRate} %`);
-  console.log(`\x1b[93m *${duration} ${result.info.duration}`);
+  console.log(`\x1b[93m *${test}`);
+  console.log(`\x1b[93m *${step}`);
+  console.log(`\x1b[93m *${testPercent}`);
+  console.log(`\x1b[93m *${testStepPercent}`);
+  console.log(`\x1b[93m *${duration}`);
   console.log('\x1b[93m **********************************************************************************\x1b[0m');
 }
 
@@ -38,6 +40,13 @@ function summaryReportConsole (result) {
 async function summaryReportEmail (result, config) {
   const folder = path.resolve(process.env.INIT_CWD, config.reporterOptions.output, 'emailSummary.txt');
   const file = fs.createWriteStream(folder);
+  file.write(`Project: ${result.info.project}\n`);
+  file.write(`Project Version: ${result.info.projectVersion}\n`);
+  file.write(`Test Cycle: ${result.info.projectCycle}\n`);
+  file.write(`Environment: ${result.info.environment}\n`);
+  file.write(`Run Start Time: ${result.info.runDate} ${result.info.startTime}\n`);
+  file.write(`Run End Time: ${result.info.endTime}\n`);
+  file.write(`Duration: ${result.info.duration}\n`);
   file.write(`Total Tests: ${result.summary.totalTests}\n`);
   file.write(`Passed Tests: ${result.summary.totalTestsPassed}\n`);
   file.write(`Failed Tests: ${result.summary.totalTestsFailed}\n`);

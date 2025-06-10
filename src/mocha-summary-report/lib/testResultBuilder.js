@@ -4,11 +4,11 @@ const moment = require('moment');
 
 
 /**
- * buildSuiteStart - Starts to build a summary of a test suite run when test execution is run in parallel
+ * buildSuiteStart - Starts to build a summary of a test suite run
  * @param {Mocha.Suite} suite contains details of the suite run
  * @param {object} _config reporter options for suiteReport
  * @param {number} index number assigned to the suite to describe the order in which the suite ran
- * @returns {object} Object contains suite run summary
+ * @returns {object} Object contains suite run summary:
 */
 function buildSuiteStart (suite, _config, index) {
   const _suite = {};
@@ -28,8 +28,8 @@ function buildSuiteStart (suite, _config, index) {
   _suite.title = suite.title.split(' ').filter((title) => !title.startsWith(tagPrefix) && !title.startsWith(testIDPrefix)).join(' ');
 
   // get test tags and testID
-  _suite.tags = suite.title.split(' ').filter((tag) => tag.startsWith(tagPrefix)).map((x) => x.substring(x.indexOf(tagPrefix) + 1));
-  _suite.testID = suite.title.split(' ').filter((testID) => testID.startsWith(testIDPrefix)).map((x) => x.substring(x.indexOf(testIDPrefix) + 1)).join(', ');
+  _suite.tags = suite.title.split(' ').filter((tag) => tag.startsWith(tagPrefix)).map((x) => x.substring(x.indexOf(tagPrefix) + 1)) || ['--'];
+  _suite.testID = suite.title.split(' ').filter((testID) => testID.startsWith(testIDPrefix)).map((x) => x.substring(x.indexOf(testIDPrefix) + 1)).join(', ') || '--';
   if (_config.reporterOptions.manualTestLink === undefined) {
     _suite.testUrl = undefined;
   }

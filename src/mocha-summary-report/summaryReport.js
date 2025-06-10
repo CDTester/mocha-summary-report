@@ -7,7 +7,6 @@ const moment = require('moment');
 const util = require('util');
 const testResultBuilder = require('./lib/testResultBuilder.js');
 const summaryGenerator = require('./lib/summaryReportGenerator.js');
-let config;
 let isParallel = false;
 let suiteNumber = 0;
 let stepNumber = 0;
@@ -19,13 +18,14 @@ const results = {
   info: {}
 };
 
-function summaryReport (summary, _options) {
-  config = _options;
+function summaryReport (summary, config) {
   summary.capture;
 
+  // This controls whether this reporter uses Mocha Base reporter in the output. By default it will be set to true unless stated as false in reporter options.
   useBaseReporter = (config.reporterOptions.includeMochaBase === undefined) ? true : config.reporterOptions.includeMochaBase;
   if (useBaseReporter) Base.call(this, summary);
 
+  // On the EVENT_RUN_BEGIN (suite), collect run date and start time
   summary.on(event.EVENT_RUN_BEGIN, function () {
     // get start time
     results.info.runDate = moment().local().format('YYYY-MM-DD');
@@ -39,7 +39,7 @@ function summaryReport (summary, _options) {
     console.log(`\x1b[32mStarting Test Suite ${parallel}\x1b[0m`);
   });
 
-
+  // On EVENT_SUITE_BEGIN (test) start a temp collection of test stats.  Only starts a collection where the suite.root = false.
   summary.on(event.EVENT_SUITE_BEGIN, function (suiteBegin) {
     if (isParallel) {
       if (suiteBegin.root === false) {
@@ -54,6 +54,7 @@ function summaryReport (summary, _options) {
     }
   });
 
+  // On EVENT_TEST_BEGIN (step) start a temp collection of step stats and add them to the relevant suite(test)
   summary.on(event.EVENT_TEST_BEGIN, function (testStepStart) {
     let obj = {};
     obj.title = testStepStart.title;
@@ -71,6 +72,8 @@ function summaryReport (summary, _options) {
     }
   });
 
+  // On EVENT_TEST_RETRY (step), If a EVENT_TEST_BEGIN results in a failed status and Mocha is set to retry 
+  // then ammend the test(step) temp results with the duration and current retry. If retry fails, the EVENT_TEST_BEGIN is run again
   summary.on(event.EVENT_TEST_RETRY, function (testStepRetry) {
     let obj = {};
     obj.title = testStepRetry.title;
@@ -104,7 +107,8 @@ function summaryReport (summary, _options) {
     }
   });
 
-
+  // On the EVENT_TEST_END (step), the steps details are logged and transformed into values used by the reports. 
+  // If EVENT_TEST_RETRY results in a passed status or reaches the retry limit, then this event is run.
   summary.on(event.EVENT_TEST_END, function (testStepEnd) {
     let duration;
     if (isParallel) {
@@ -139,6 +143,7 @@ function summaryReport (summary, _options) {
     }
   });
 
+  // On the EVENT_SUITE_END (test), summarise the test steps
   summary.on(event.EVENT_SUITE_END, function (suite) {
     try {
       if (isParallel) {
@@ -177,6 +182,7 @@ function summaryReport (summary, _options) {
     }
   });
 
+  // On the EVENT_RUN_END (suite), summarise all the tests and collect information about the suite run time. Then call for the reports to be generated. 
   summary.once(event.EVENT_RUN_END, function () {
     // get end time
     results.info.endTime = moment(this.stats.end).local().format('HH:mm:ss.SSS');
@@ -199,10 +205,10 @@ function summaryReport (summary, _options) {
     if (consoleSummary === 'true') summaryGenerator.summaryReportConsole(results);
     if (textFileSummary === 'true') summaryGenerator.summaryReportEmail(results, config);
     if (htmlSummary === 'true') summaryGenerator.summaryReportHtml(results, config);
-
   });
 }
 
+// If the Mocha.Base reporter is set to run, then run that reporter.
 if (useBaseReporter) util.inherits(summaryReport, Base);
 
 module.exports = summaryReport;
