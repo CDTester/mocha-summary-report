@@ -1,6 +1,6 @@
 {
   "name": "mocha-summary-report",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "main": "src/mocha-summary-report/summaryReport.js",
   "description": "Generate a summary report of all suites as a HTML file, console log and text file",
   "scripts": {
