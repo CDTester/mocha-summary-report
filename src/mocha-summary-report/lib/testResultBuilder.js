@@ -1,4 +1,7 @@
-const envCi = require('./envCi');
+// const envCi = require('./envCi');
+let envCi;
+(async () => { envCi = (await import("env-ci")).default;})();
+const envCiImage = require('./envCiImage.js');
 const path = require('path');
 const moment = require('moment');
 
@@ -176,19 +179,21 @@ function buildSuitesInfo (_results, _config) {
   info.duration = _results.info.duration || '--';
 
   // set some example env variables to test CI/CD
+  // process.env.BUDDY_WORKSPACE_ID = "http://bitrise.io";
   // process.env.JENKINS_URL = "http://myjenkins.com";
   // process.env.BUILD_NUMBER = "12";
   // process.env.JOB_NAME = "myjob";
   // process.env.BUILD_URL = `http://myjenkins.com/job/${process.env.JOB_NAME}/${process.env.BUILD_NUMBER}/`;
 
   // get CI/CD info
-  const ciDetails = envCi.envCi();
+  const ciDetails = envCi();
+  const ciImage = envCiImage.envCiImage(ciDetails.name);
   info.isCi = ciDetails.isCi;
-  info.ciServer = ciDetails.name;
+  info.ciServer = ciDetails.name || 'Local';
   info.buildUrl = ciDetails.buildUrl || '--';
-  info.buildNumber = ciDetails.buildNumber || '--';
+  info.buildNumber = ciDetails.build || '--';
   info.jobName = ciDetails.jobName || '--';
-  info.icon = ciDetails.icon || '';
+  info.icon = ciImage.icon || '';
 
   return info;
 }

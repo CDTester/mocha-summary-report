@@ -38,8 +38,12 @@ function summaryReportConsole (result) {
  * @param {object} config reporter options for suiteReport
 */
 async function summaryReportEmail (result, config) {
-  const folder = path.resolve(process.env.INIT_CWD, config.reporterOptions.output, 'emailSummary.txt');
-  const file = fs.createWriteStream(folder);
+  // save report to folder
+  const endPath = config.reporterOptions.output || 'test_report';
+  const folder = path.resolve(process.env.INIT_CWD, endPath);  utils.folderExists(folder);
+
+  const filePath = path.resolve(folder, 'emailSummary.txt');
+  const file = fs.createWriteStream(filePath);
   file.write(`Project: ${result.info.project}\n`);
   file.write(`Project Version: ${result.info.projectVersion}\n`);
   file.write(`Test Cycle: ${result.info.projectCycle}\n`);
@@ -82,6 +86,8 @@ async function summaryReportHtml (result, config) {
     const endPath = config.reporterOptions.output || 'test_report';
     const folder = path.resolve(process.env.INIT_CWD, endPath);
 
+    // create folder if folder does not exist
+    utils.folderExists(folder);
     // save report to folder
     utils.saveReport(folder, 'summary-report.html', html);
   }
