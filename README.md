@@ -126,9 +126,15 @@ Each test suite can be expanded to reveal more details about the test steps stat
 
 
 ## Install
-Add mocha-summary-report to your project:
+Add mocha-summary-report to your project by adding it to to your package.json:
 ```
-npm install mocha-summary-report
+  "dependencies": {
+    "mocha-summary-report": "github:CDTester/mocha-summary-report"
+  },
+```
+Then install it with:
+```
+npm i
 ```
 
 ## Usage
