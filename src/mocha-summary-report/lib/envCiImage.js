@@ -39,7 +39,7 @@ function envCiImage (ciName) {
   else if (ciName === 'Vercel') ciVariables.icon = 'https://w7.pngwing.com/pngs/436/888/png-transparent-vercel-hd-logo-thumbnail.png';
   else if (ciName === 'Wercker') ciVariables.icon = 'https://upload.wikimedia.org/wikipedia/en/6/6e/Wercker_logo.png';
   else if (ciName === 'Woodpecker CI') ciVariables.icon = 'https://avatars.githubusercontent.com/u/84780935?s=200&v=4';
-  else ciVariables.icon = 'https://static-00.iconduck.com/assets.00/laptop-emoji-512x512-xtenmzmj.png';
+  else ciVariables.icon = 'https://cdn0.iconfinder.com/data/icons/icons-unleashed-vol1/256/-desktop.png';
 
   return ciVariables;
 }

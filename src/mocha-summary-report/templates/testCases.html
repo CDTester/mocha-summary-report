@@ -13,12 +13,12 @@
               <div class="panel-heading lead no-margin">Test Cases</div>
             {{/if}}
             <div class="panel-body">
-              <table class="table table-responsive table-hover table-font-14">
+              <table class="table table-responsive table-hover table-font-14 table-padding-5">
                 <thead>
                   <tr>
                     <th class="col-xs-1 col-sm-1 col-md-1 col-lg-1">Expand</th>
                     <th class="col-xs-1 col-sm-1 col-md-1 col-lg-1">Test ID</th>
-                    <th class="col-xs-2 col-sm-2 col-md-2 col-lg-2">Tags</th>
+                    <th class="hidden-xs col-sm-2 col-md-2 col-lg-2">Tags</th>
                     <th class="col-xs-5 col-sm-5 col-md-5 col-lg-5">Test Scenario</th>
                     <th class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
                       <span class="text-success">Passed</span> / 
@@ -41,9 +41,9 @@
                     {{else}}
                     <td><span class="font-size-085em">{{{test.testID}}}</span></td>
                     {{/if}}
-                    <td>
+                    <td class="hidden-xs col-sm-2 col-md-2 col-lg-2">
                       {{#each this.tags as | tag |}}
-                      <span class="font-size-085em label label-primary">{{{tag}}}&nbsp;</span>
+                      <span class="font-size-075em label label-primary">{{{tag}}}&nbsp;</span>
                       {{/each}}
                     </td>
                     <td><span class="font-size-085em">{{{test.title}}}</span></td>
@@ -63,8 +63,7 @@
                     <td>{{test.duration}}</td>
                   </tr>
                   <tr class="collapse table{{test.index}}">
-                    <td colspan="1"></td>
-                    <td colspan="5">
+                    <td colspan="6">
                       <div class="panel panel-primary">
                         <table class="table table-striped">
                           <thead>
@@ -80,12 +79,12 @@
                           <tbody>
                           {{#each test.steps as | step |}}
                             <tr>
-                              <td><span class="font-size-085em">{{step.index}}</span></td>
-                              <td><span class="font-size-085em">{{step.testStepTitle}}</span></td>
-                              <td><span class="font-size-085em">{{step.error}}</span></td>
-                              <td><span class="font-size-085em">{{step.retries}}</span></td>
-                              <td><span class="font-size-085em label label-{{step.class}}">{{step.status}}</span></td>
-                              <td><span class="font-size-085em">{{step.duration}}</span></td>
+                              <td><span class="font-size-075em">{{step.index}}</span></td>
+                              <td><span class="font-size-075em">{{step.testStepTitle}}</span></td>
+                              <td><span class="font-size-075em">{{step.error}}</span></td>
+                              <td><span class="font-size-075em">{{step.retries}}</span></td>
+                              <td><span class="font-size-075em label label-{{step.class}}">{{step.status}}</span></td>
+                              <td><span class="font-size-075em">{{step.duration}}</span></td>
                             </tr>
                           {{/each}}
                           </tbody>
