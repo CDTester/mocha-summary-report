@@ -22,7 +22,7 @@ function buildSuiteStart (suite, _config, index) {
 
   // add link if other reports are being used
   _suite.otherReport = (_config.reporterOptions.otherReportLink !== undefined) ? true : false;
-  _suite.reportLink = (_config.reporterOptions.otherReportLink !== undefined) ? path.resolve(process.env.INIT_CWD, _config.reporterOptions.otherReportLink) : "";
+  _suite.reportLink = (_config.reporterOptions.otherReportLink !== undefined) ? _config.reporterOptions.otherReportLink : "";
 
   // test suite index
   _suite.index = index;
@@ -187,6 +187,7 @@ function buildSuitesInfo (_results, _config) {
 
   // get CI/CD info
   const ciDetails = envCi();
+  info.name = ciDetails.name || 'Local';
   const ciImage = envCiImage.envCiImage(ciDetails.name);
   info.isCi = ciDetails.isCi;
   info.ciServer = ciDetails.name || 'Local';

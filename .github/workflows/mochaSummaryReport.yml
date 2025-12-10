@@ -96,6 +96,7 @@ jobs:
             echo "" >> $GITHUB_STEP_SUMMARY
             echo "### 📄 Reports" >> $GITHUB_STEP_SUMMARY
             echo "🔗 [View Summary report](https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/summary-report.html)" >> $GITHUB_STEP_SUMMARY
+            echo "🔗 [view Mocha report](https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/test-report.html)" >> $GITHUB_STEP_SUMMARY
             echo "" >> $GITHUB_STEP_SUMMARY
           
             if [ "${{ steps.tests.outcome }}" == "success" ]; then

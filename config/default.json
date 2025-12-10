@@ -25,7 +25,7 @@
         "htmlSummary": "true",
         "passRateGreen": 80,
         "passRateAmber": 70,
-        "otherReportLink": "test_report/test-report.html",
+        "otherReportLink": "test-report.html",
         "includeMochaBase": false
     }
 }
