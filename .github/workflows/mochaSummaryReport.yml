@@ -4,7 +4,7 @@ on:
   push:
     branches: [main, master]
   pull_request:
-    branches: [main, master, gh-pages]
+    branches: [main, master]
 
 permissions: 
   contents: write
@@ -45,7 +45,7 @@ jobs:
         if: always()
         id: test-results
         run: |
-          if [-f test_report/emailSummary.txt ]; then
+          if [ -f test_report/emailSummary.txt ]; then
             TOTAL=$(grep -oP '(?<=Total Tests: )[^\n]*' test_report/emailSummary.txt || echo "0")
             PASSED=$(grep -oP '(?<=Passed Tests: )[^\n]*' target/surefire-reports/testng-results.xml || echo "0")
             FAILED=$(grep -oP '(?<=Failed Tests: )[^\n]*' target/surefire-reports/testng-results.xml || echo "0")
@@ -61,7 +61,15 @@ jobs:
             echo "failed=0" >> $GITHUB_OUTPUT
             echo "skipped=0" >> $GITHUB_OUTPUT
           fi
-        
+      
+      # results
+      - name: parsed results
+        run: |
+          echo "- **Total Tests:** ${{ steps.test-results.outputs.total }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **✅ Passed:** ${{ steps.test-results.outputs.passed }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **❌ Failed:** ${{ steps.test-results.outputs.failed }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **⏭️ Skipped:** ${{ steps.test-results.outputs.skipped }}" >> $GITHUB_STEP_SUMMARY
+
       # Archive test reports
       - name: 📦 Archive test reports
         uses: actions/upload-artifact@v5
