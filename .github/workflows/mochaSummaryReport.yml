@@ -62,14 +62,6 @@ jobs:
             echo "skipped=0" >> $GITHUB_OUTPUT
           fi
       
-      # results
-      - name: parsed results
-        run: |
-          echo "- **Total Tests:** ${{ steps.test-results.outputs.total }}" >> $GITHUB_STEP_SUMMARY
-          echo "- **✅ Passed:** ${{ steps.test-results.outputs.passed }}" >> $GITHUB_STEP_SUMMARY
-          echo "- **❌ Failed:** ${{ steps.test-results.outputs.failed }}" >> $GITHUB_STEP_SUMMARY
-          echo "- **⏭️ Skipped:** ${{ steps.test-results.outputs.skipped }}" >> $GITHUB_STEP_SUMMARY
-
       # Archive test reports
       - name: 📦 Archive test reports
         uses: actions/upload-artifact@v5
@@ -87,7 +79,7 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
-          publish_dir: ./test-reports
+          publish_dir: test_report
           keep_files: true
 
       # Add report to summary
