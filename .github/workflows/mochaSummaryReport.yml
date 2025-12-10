@@ -47,9 +47,9 @@ jobs:
         run: |
           if [ -f test_report/emailSummary.txt ]; then
             TOTAL=$(grep -oP '(?<=Total Tests: )[^\n]*' test_report/emailSummary.txt || echo "0")
-            PASSED=$(grep -oP '(?<=Passed Tests: )[^\n]*' target/surefire-reports/testng-results.xml || echo "0")
-            FAILED=$(grep -oP '(?<=Failed Tests: )[^\n]*' target/surefire-reports/testng-results.xml || echo "0")
-            SKIPPED=$(grep -oP '(?<=Skipped Tests: )[^\n]*' target/surefire-reports/testng-results.xml || echo "0")
+            PASSED=$(grep -oP '(?<=Passed Tests: )[^\n]*' test_report/emailSummary.txt || echo "0")
+            FAILED=$(grep -oP '(?<=Failed Tests: )[^\n]*' test_report/emailSummary.txt || echo "0")
+            SKIPPED=$(grep -oP '(?<=Skipped Tests: )[^\n]*' test_report/emailSummary.txt || echo "0")
           
             echo "total=$TOTAL" >> $GITHUB_OUTPUT
             echo "passed=$PASSED" >> $GITHUB_OUTPUT
