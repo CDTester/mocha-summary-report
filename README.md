@@ -1,6 +1,13 @@
 # mocha-summary-report
 Generates summary reports of all the suites executed in a single Mocha execution. This reporter also works when run in `--parallel` mode. 
 
+[![Test Status](https://github.com/CDTester/mocha-summary-report/actions/workflows/mochaSummaryReport.yml/badge.svg)](https://github.com/CDTester/mocha-summary-report/actions/workflows/mochaSummaryReport.yml)
+[![Test Report](https://github.com/CDTester/mocha-summary-report/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/CDTester/mocha-summary-report/actions/workflows/pages/pages-build-deployment)
+
+## Latest Build Report
+https://cdtester.github.io/mocha-summary-report/
+
+
 ## Console Summary Feature
 Provides a summary for each suite and a total summary of all the suites in the terminal console.
 

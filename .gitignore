@@ -10,5 +10,3 @@ test_report/
 # Environment
 .env
 
-# Package
-package-lock.json
