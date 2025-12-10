@@ -1,0 +1,455 @@
+<html>
+  <head>
+    <title>Summary Report</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+      .stripes { height: 100%; width: 100%; background: repeating-linear-gradient(60deg, #eeeeee 1px, white 6px); }
+      .no-margin { margin: 0px }
+      .font-size-normal { font-size: 100%; font-weight: normal; }
+      .font-size-085em { font-size: 0.85em; font-weight: normal; line-height: 200%; }
+      .font-size-075em { font-size: 0.75em; font-weight: normal; line-height: 200%; }
+      .padding-left-right-15 { padding-left: 15px; padding-right: 15px; }
+      .padding-left-right-5 { padding-left: 5px; padding-right: 5px; }
+      .padding-left-right-5 { padding-left: 5px; padding-right: 5px; }
+      .ellipsis { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+      .padding-top-bottom-5 { padding-top: 5px; padding-bottom: 5px; min-height: 4em; }
+      .padding-bottom-5 { padding-bottom: 5px; min-height: 4em; }
+      .overflow-scroll { overflow-y: scroll; overflow-x: hidden; min-height: 2em; }
+      .right { text-align: right; }
+      .lg-percentage { font-size: 36px; }
+      .md-percentage { font-size: 30px; padding-bottom: 5px; }
+      .sm-percentage { font-size: 22px; padding-bottom: 20px }
+      .xs-percentage { font-size: 16px; padding-bottom: 20px }
+      .bg-green { background-color: #5cb85c; color: white; padding: 7px; border-radius: 4px; }
+      .bg-red { background-color: #d9534f; color: white; padding: 7px; border-radius: 4px; }
+      .bg-amber { background-color: #f0ad4e; color: white; padding: 7px; border-radius: 4px; }
+      .label-padded { padding: 7px 50px; font-size: 100%; font-weight: 550; }
+      .table-font-14 { font-size: 14px; }
+      .icon { width:4em; height: 4em; }
+      .table-padding-5 {padding: 5px}
+    </style>
+  </head>
+
+  <body class="stripes">
+    <br /><br />
+
+    <!-- Suite details -->
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="panel-group">
+              <h2 class="col-xs-12 col-sm-12 col-md-12 col-lg-12">Test suite details for proj1</h2>
+      
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 padding-left-right-5">
+          <div class="panel panel-primary">
+            <div class="panel-heading lead no-margin">Suite Details</div>
+            <div class="panel-body">
+              <div class="col-xs-3 col-sm-2 col-md-2 col-lg-2 padding-left-right-5 ellipsis"><b>Version:</b></div>
+              <div class="col-xs-9 col-sm-10 col-md-10 col-lg-10 padding-left-right-5">Release_1</div>
+              <div class="col-xs-3 col-sm-2 col-md-2 col-lg-2 padding-left-right-5 ellipsis"><b>Cycle:</b></div>
+              <div class="col-xs-9 col-sm-10 col-md-10 col-lg-10 padding-left-right-5">smoke_test</div>
+              <div class="col-xs-3 col-sm-2 col-md-2 col-lg-2 padding-left-right-5 ellipsis"><b>Environment:</b></div>
+              <div class="col-xs-9 col-sm-10 col-md-10 col-lg-10 padding-left-right-5">evt1</div>
+              <div class="col-xs-3 col-sm-2 col-md-2 col-lg-2 padding-left-right-5 ellipsis"><b>Tags:</b></div>
+              <div class="col-xs-9 col-sm-10 col-md-10 col-lg-10 padding-left-right-5 overflow-scroll">
+                <span class="label label-primary">componentA</span>&nbsp;
+                <span class="label label-primary">smoke</span>&nbsp;
+                <span class="label label-primary">componentB</span>&nbsp;
+                <span class="label label-primary">componentC</span>&nbsp;
+              </div>
+            </div>            
+          </div>
+          <br/>
+        </div>
+
+      <div class="col-xs-12 col-sm-5 col-md-4 col-lg-4 padding-left-right-5">
+        <div class="panel panel-primary">
+          <div class="panel-heading lead no-margin">Run Time Details</div>
+          <div class="panel-body">
+            <div class="col-xs-4 col-sm-5 col-md-5 col-lg-5 padding-left-right-2 ellipsis"><b>Run Date:</b></div>
+            <div class="col-xs-8 col-sm-7 col-md-7 col-lg-7 padding-left-right-9">10/12/2025</div>
+            <div class="col-xs-4 col-sm-5 col-md-5 col-lg-5 padding-left-right-2 ellipsis"><b>Start Time:</b></div>
+            <div class="col-xs-8 col-sm-7 col-md-7 col-lg-7 padding-left-right-9">20:10:30.931</div>
+            <div class="col-xs-4 col-sm-5 col-md-5 col-lg-5 padding-left-right-2 ellipsis"><b>End Time:</b></div>
+            <div class="col-xs-8 col-sm-7 col-md-7 col-lg-7 padding-left-right-9">20:10:35.378</div>
+            <div class="col-xs-4 col-sm-5 col-md-5 col-lg-5 padding-left-right-2 ellipsis"><b>Duration (s):</b></div>
+            <div class="col-xs-8 col-sm-7 col-md-7 col-lg-7 padding-left-right-9">00:00:04.447</div>
+          </div>
+        </div>
+        <br/>
+      </div>
+
+      <div class="col-xs-12 col-sm-7 col-md-8 col-lg-8 padding-left-right-5">
+        <div class="panel panel-primary">
+          <div class="panel-heading lead no-margin">Ran on GitHub Actions</div>
+          <div class="panel-body">
+            <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 padding-left-right-5">
+              <div class="col-xs-4 col-sm-4 col-md-3 col-lg-2 padding-left-right-5 ellipsis"><b>Build Number:</b></div>
+              <div class="col-xs-8 col-sm-8 col-md-9 col-lg-10 padding-left-right-5">20111881541</div>
+              <div class="col-xs-4 col-sm-4 col-md-3 col-lg-2 padding-left-right-5 ellipsis"><b>Job Name:</b></div>
+              <div class="col-xs-8 col-sm-8 col-md-9 col-lg-10 padding-left-right-5">--</div>
+              <div class="col-xs-4 col-sm-4 col-md-3 col-lg-2 padding-left-right-5 ellipsis"><b>Build URL:</b></div>
+              <div class="col-xs-8 col-sm-8 col-md-9 col-lg-10 padding-left-right-5">
+                <a href=https://github.com/CDTester/mocha-summary-report/actions/runs/20111881541 target="_blank">https://github.com/CDTester/mocha-summary-report/actions/runs/20111881541</a>
+              </div>
+              <div class="hidden-xs col-sm-12 col-md-12 col-lg-12 padding-left-right-5"><b>&nbsp;</b></div>
+            </div>
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 padding-left-right-5">
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 padding-left-right-5">
+                <img src="https://static-00.iconduck.com/assets.00/github-icon-512x489-i96zunkj.png" class="icon"><img>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+        
+      </div>
+    </div>
+    <div class="clearfix"></div>
+
+    <!-- SUMMARY -->
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="panel-group">
+                <h2 class="col-xs-12 col-sm-12 col-md-12 col-lg-12">Summary</h2>
+
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 padding-left-right-5  padding-bottom-5">
+          <div class="panel panel-primary">
+            <div class="panel-heading lead no-margin">Test Suite Summary</div>
+            <div class="panel-body">
+              <div class="col-xs-6 col-sm-6 col-md-6 col-lg-5 padding-left-right-5">
+                <div class="col-xs-6 col-sm-6 col-md-5 col-lg-4 padding-left-right-5 ellipsis"><b>Run:</b></div>
+                <div class="col-xs-6 col-sm-6 col-md-7 col-lg-8 padding-left-right-5">3</div>
+                <div class="col-xs-6 col-sm-6 col-md-5 col-lg-4 padding-left-right-5 ellipsis"><b>Passed:</b></div>
+                <div class="col-xs-6 col-sm-6 col-md-7 col-lg-8 padding-left-right-5">2</div>
+                <div class="col-xs-6 col-sm-6 col-md-5 col-lg-4 padding-left-right-5 ellipsis"><b>Skipped:</b></div>
+                <div class="col-xs-6 col-sm-6 col-md-7 col-lg-8 padding-left-right-5">0</div>
+                <div class="col-xs-6 col-sm-6 col-md-5 col-lg-4 padding-left-right-5 ellipsis"><b>Failed:</b></div>
+                <div class="col-xs-6 col-sm-6 col-md-7 col-lg-8 padding-left-right-5">1</div>
+              </div>
+              <div class="col-xs-3 col-sm-3 col-md-4 col-lg-3 bg-red text-center">
+                <div class="no-margin"><b>Passed Rate:</b></div>
+                <div class="col lg-percentage hidden-xs hidden-sm hidden-md">66.67%</div>
+                <div class="col md-percentage hidden-xs hidden-sm hidden-lg">66.67%</div>
+                <div class="col sm-percentage hidden-xs hidden-md hidden-lg">66.67%</div>
+                <div class="col xs-percentage hidden-sm hidden-md hidden-lg">66.67%</div>
+              </div>
+              <div class="col-xs-3 col-sm-3 col-md-2 col-lg-3 padding-top-bottom-5 text-center">
+                <div class="no-margin"><b>Tests/s:</b></div>
+                <div class="col lg-percentage hidden-xs hidden-sm hidden-md">0.67</div>
+                <div class="col md-percentage hidden-xs hidden-sm hidden-lg">0.67</div>
+                <div class="col sm-percentage hidden-xs hidden-md hidden-lg">0.67</div>
+                <div class="col xs-percentage hidden-sm hidden-md hidden-lg">0.67</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br>
+
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 padding-left-right-5">
+          <div class="panel panel-primary">
+            <div class="panel-heading lead no-margin">Test Step Summary</div>
+              <div class="panel-body">
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-5 padding-left-right-5">
+                  <div class="col-xs-6 col-sm-6 col-md-5 col-lg-4 padding-left-right-5 ellipsis"><b>Run:</b></div>
+                  <div class="col-xs-6 col-sm-6 col-md-7 col-lg-8 padding-left-right-5">11</div>
+                  <div class="col-xs-6 col-sm-6 col-md-5 col-lg-4 padding-left-right-5 ellipsis"><b> Passed:</b></div>
+                  <div class="col-xs-6 col-sm-6 col-md-7 col-lg-8 padding-left-right-5">8</div>
+                  <div class="col-xs-6 col-sm-6 col-md-5 col-lg-4 padding-left-right-5 ellipsis"><b>Skipped:</b></div>
+                  <div class="col-xs-6 col-sm-6 col-md-7 col-lg-8 padding-left-right-5">2</div>
+                  <div class="col-xs-6 col-sm-6 col-md-5 col-lg-4 padding-left-right-5 ellipsis"><b>Failed:</b></div>
+                  <div class="col-xs-6 col-sm-6 col-md-7 col-lg-8 padding-left-right-5">1</div>
+                </div>
+                <div class="col-xs-3 col-sm-3 col-md-4 col-lg-3 bg-amber text-center">
+                  <div class="no-margin"><b>Passed Rate:</b></div>
+                  <div class="col lg-percentage hidden-xs hidden-sm hidden-md">72.73%</div>
+                  <div class="col md-percentage hidden-xs hidden-sm hidden-lg">72.73%</div>
+                  <div class="col sm-percentage hidden-xs hidden-md hidden-lg">72.73%</div>
+                  <div class="col xs-percentage hidden-sm hidden-md hidden-lg">72.73%</div>
+                </div>
+                <div class="col-xs-3 col-sm-3 col-md-2 col-lg-3 padding-top-bottom-5 text-center">
+                  <div class="no-margin"><b>Steps/s:</b></div>
+                  <div class="col lg-percentage hidden-xs hidden-sm hidden-md">2.02</div>
+                  <div class="col md-percentage hidden-xs hidden-sm hidden-lg">2.02</div>
+                  <div class="col sm-percentage hidden-xs hidden-md hidden-lg">2.02</div>
+                  <div class="col xs-percentage hidden-sm hidden-md hidden-lg">2.02</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="clearfix"></div>
+
+    <!-- Test Cases -->
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="panel-group">
+                    <h2 class="col-xs-12 col-sm-12 col-md-12 col-lg-12">Suites</h2>
+
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 padding-left-right-5">
+          <div class="panel panel-primary">
+              <div class="panel-heading lead no-margin">
+                Test Cases   
+                <span class="right">
+                  <a class="btn btn-default" href=/home/runner/work/mocha-summary-report/mocha-summary-report/test_report/test-report.html target="_blank" role="button">Click here for other test report</a>
+                </span>
+              </div>
+            <div class="panel-body">
+              <table class="table table-responsive table-hover table-font-14 table-padding-5">
+                <thead>
+                  <tr>
+                    <th class="col-xs-1 col-sm-1 col-md-1 col-lg-1">Expand</th>
+                    <th class="col-xs-1 col-sm-1 col-md-1 col-lg-1">Test ID</th>
+                    <th class="hidden-xs col-sm-2 col-md-2 col-lg-2">Tags</th>
+                    <th class="col-xs-5 col-sm-5 col-md-5 col-lg-5">Test Scenario</th>
+                    <th class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                      <span class="text-success">Passed</span> / 
+                      <span class="text-info">Skipped</span> / 
+                      <span class="text-danger">Failed</span>
+                    </th>
+                    <th class="col-xs-1 col-sm-1 col-md-1 col-lg-1">Duration (s)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="col-md-1" data-toggle="collapse" id="table1" data-target=".table1">
+                      <button class="btn btn-default btn-sm">
+                        <span class="glyphicon glyphicon-plus"></span>
+                      </button>
+                    </td>
+                    <td><span class="font-size-085em"><a href="https://company.domain/jira/browse/JIRA-1234" target="_blank">JIRA-1234</a></span></td>
+                    <td class="hidden-xs col-sm-2 col-md-2 col-lg-2">
+                      <span class="font-size-075em label label-primary">componentA&nbsp;</span>
+                      <span class="font-size-075em label label-primary">smoke&nbsp;</span>
+                    </td>
+                    <td><span class="font-size-085em">Example test 1</span></td>
+                    <td>
+                      <div class="progress no-margin">
+                        <div class="progress-bar progress-bar-success font-size-085em" role="progressbar" style="width: 40.00%">
+                          2
+                        </div>
+                        <div class="progress-bar progress-bar-info font-size-085em" role="progressbar" style="width: 40.00%">
+                          2
+                        </div>
+                        <div class="progress-bar progress-bar-danger font-size-085em" role="progressbar" style="width: 20.00%">
+                          1
+                        </div>
+                      </div>
+                    </td>
+                    <td>1.552</td>
+                  </tr>
+                  <tr class="collapse table1">
+                    <td colspan="6">
+                      <div class="panel panel-primary">
+                        <table class="table table-striped">
+                          <thead>
+                            <tr class="info">
+                              <th class="col-xs-1 col-sm-1 col-md-1 col-lg-1 font-size-085em">Step</th>
+                              <th class="col-xs-4 col-sm-4 col-md-4 col-lg-4 font-size-085em">step description</th>
+                              <th class="col-xs-3 col-sm-3 col-md-3 col-lg-3 font-size-085em">Error</th>
+                              <th class="col-xs-1 col-sm-1 col-md-1 col-lg-1 font-size-085em">Retries</th>
+                              <th class="col-xs-2 col-sm-2 col-md-2 col-lg-2 font-size-085em">Status</th>
+                              <th class="col-xs-1 col-sm-1 col-md-1 col-lg-1 font-size-085em">Duration (s)</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td><span class="font-size-075em">1</span></td>
+                              <td><span class="font-size-075em">show environment data</span></td>
+                              <td><span class="font-size-075em"></span></td>
+                              <td><span class="font-size-075em">--</span></td>
+                              <td><span class="font-size-075em label label-success">Passed</span></td>
+                              <td><span class="font-size-075em">0.112</span></td>
+                            </tr>
+                            <tr>
+                              <td><span class="font-size-075em">2</span></td>
+                              <td><span class="font-size-075em">Expect 1 to be 1</span></td>
+                              <td><span class="font-size-075em"></span></td>
+                              <td><span class="font-size-075em">--</span></td>
+                              <td><span class="font-size-075em label label-success">Passed</span></td>
+                              <td><span class="font-size-075em">0.438</span></td>
+                            </tr>
+                            <tr>
+                              <td><span class="font-size-075em">3</span></td>
+                              <td><span class="font-size-075em">Expect true to be true</span></td>
+                              <td><span class="font-size-075em">expected false to be true</span></td>
+                              <td><span class="font-size-075em">--</span></td>
+                              <td><span class="font-size-075em label label-danger">Failed</span></td>
+                              <td><span class="font-size-075em">1.002</span></td>
+                            </tr>
+                            <tr>
+                              <td><span class="font-size-075em">4</span></td>
+                              <td><span class="font-size-075em">Expect anything to be anything</span></td>
+                              <td><span class="font-size-075em"></span></td>
+                              <td><span class="font-size-075em">--</span></td>
+                              <td><span class="font-size-075em label label-info">Skipped</span></td>
+                              <td><span class="font-size-075em">0.000</span></td>
+                            </tr>
+                            <tr>
+                              <td><span class="font-size-075em">5</span></td>
+                              <td><span class="font-size-075em">Expect step to be skipped</span></td>
+                              <td><span class="font-size-075em"></span></td>
+                              <td><span class="font-size-075em">--</span></td>
+                              <td><span class="font-size-075em label label-info">Skipped</span></td>
+                              <td><span class="font-size-075em">0.000</span></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="col-md-1" data-toggle="collapse" id="table2" data-target=".table2">
+                      <button class="btn btn-default btn-sm">
+                        <span class="glyphicon glyphicon-plus"></span>
+                      </button>
+                    </td>
+                    <td><span class="font-size-085em"><a href="https://company.domain/jira/browse/JIRA-1235" target="_blank">JIRA-1235</a></span></td>
+                    <td class="hidden-xs col-sm-2 col-md-2 col-lg-2">
+                      <span class="font-size-075em label label-primary">componentB&nbsp;</span>
+                      <span class="font-size-075em label label-primary">smoke&nbsp;</span>
+                    </td>
+                    <td><span class="font-size-085em">Example test 2</span></td>
+                    <td>
+                      <div class="progress no-margin">
+                        <div class="progress-bar progress-bar-success font-size-085em" role="progressbar" style="width: 100.00%">
+                          3
+                        </div>
+                        <div class="progress-bar progress-bar-info font-size-085em" role="progressbar" style="width: 0.00%">
+                          0
+                        </div>
+                        <div class="progress-bar progress-bar-danger font-size-085em" role="progressbar" style="width: 0.00%">
+                          0
+                        </div>
+                      </div>
+                    </td>
+                    <td>1.544</td>
+                  </tr>
+                  <tr class="collapse table2">
+                    <td colspan="6">
+                      <div class="panel panel-primary">
+                        <table class="table table-striped">
+                          <thead>
+                            <tr class="info">
+                              <th class="col-xs-1 col-sm-1 col-md-1 col-lg-1 font-size-085em">Step</th>
+                              <th class="col-xs-4 col-sm-4 col-md-4 col-lg-4 font-size-085em">step description</th>
+                              <th class="col-xs-3 col-sm-3 col-md-3 col-lg-3 font-size-085em">Error</th>
+                              <th class="col-xs-1 col-sm-1 col-md-1 col-lg-1 font-size-085em">Retries</th>
+                              <th class="col-xs-2 col-sm-2 col-md-2 col-lg-2 font-size-085em">Status</th>
+                              <th class="col-xs-1 col-sm-1 col-md-1 col-lg-1 font-size-085em">Duration (s)</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td><span class="font-size-075em">1</span></td>
+                              <td><span class="font-size-075em">Expect [1,2,3] to include 2</span></td>
+                              <td><span class="font-size-075em"></span></td>
+                              <td><span class="font-size-075em">--</span></td>
+                              <td><span class="font-size-075em label label-success">Passed</span></td>
+                              <td><span class="font-size-075em">0.501</span></td>
+                            </tr>
+                            <tr>
+                              <td><span class="font-size-075em">2</span></td>
+                              <td><span class="font-size-075em">Expect 1 not to be null</span></td>
+                              <td><span class="font-size-075em"></span></td>
+                              <td><span class="font-size-075em">--</span></td>
+                              <td><span class="font-size-075em label label-success">Passed</span></td>
+                              <td><span class="font-size-075em">0.329</span></td>
+                            </tr>
+                            <tr>
+                              <td><span class="font-size-075em">3</span></td>
+                              <td><span class="font-size-075em">Expect undefined to be undefined</span></td>
+                              <td><span class="font-size-075em"></span></td>
+                              <td><span class="font-size-075em">--</span></td>
+                              <td><span class="font-size-075em label label-success">Passed</span></td>
+                              <td><span class="font-size-075em">0.714</span></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="col-md-1" data-toggle="collapse" id="table3" data-target=".table3">
+                      <button class="btn btn-default btn-sm">
+                        <span class="glyphicon glyphicon-plus"></span>
+                      </button>
+                    </td>
+                    <td><span class="font-size-085em"><a href="https://company.domain/jira/browse/JIRA-1236" target="_blank">JIRA-1236</a></span></td>
+                    <td class="hidden-xs col-sm-2 col-md-2 col-lg-2">
+                      <span class="font-size-075em label label-primary">componentC&nbsp;</span>
+                      <span class="font-size-075em label label-primary">smoke&nbsp;</span>
+                    </td>
+                    <td><span class="font-size-085em">Example test 3</span></td>
+                    <td>
+                      <div class="progress no-margin">
+                        <div class="progress-bar progress-bar-success font-size-085em" role="progressbar" style="width: 100.00%">
+                          3
+                        </div>
+                        <div class="progress-bar progress-bar-info font-size-085em" role="progressbar" style="width: 0.00%">
+                          0
+                        </div>
+                        <div class="progress-bar progress-bar-danger font-size-085em" role="progressbar" style="width: 0.00%">
+                          0
+                        </div>
+                      </div>
+                    </td>
+                    <td>1.335</td>
+                  </tr>
+                  <tr class="collapse table3">
+                    <td colspan="6">
+                      <div class="panel panel-primary">
+                        <table class="table table-striped">
+                          <thead>
+                            <tr class="info">
+                              <th class="col-xs-1 col-sm-1 col-md-1 col-lg-1 font-size-085em">Step</th>
+                              <th class="col-xs-4 col-sm-4 col-md-4 col-lg-4 font-size-085em">step description</th>
+                              <th class="col-xs-3 col-sm-3 col-md-3 col-lg-3 font-size-085em">Error</th>
+                              <th class="col-xs-1 col-sm-1 col-md-1 col-lg-1 font-size-085em">Retries</th>
+                              <th class="col-xs-2 col-sm-2 col-md-2 col-lg-2 font-size-085em">Status</th>
+                              <th class="col-xs-1 col-sm-1 col-md-1 col-lg-1 font-size-085em">Duration (s)</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td><span class="font-size-075em">1</span></td>
+                              <td><span class="font-size-075em">Expect &#x27;foo&#x27; to not be NaN</span></td>
+                              <td><span class="font-size-075em"></span></td>
+                              <td><span class="font-size-075em">--</span></td>
+                              <td><span class="font-size-075em label label-success">Passed</span></td>
+                              <td><span class="font-size-075em">0.334</span></td>
+                            </tr>
+                            <tr>
+                              <td><span class="font-size-075em">2</span></td>
+                              <td><span class="font-size-075em">Expect 1 not to be null</span></td>
+                              <td><span class="font-size-075em"></span></td>
+                              <td><span class="font-size-075em">--</span></td>
+                              <td><span class="font-size-075em label label-success">Passed</span></td>
+                              <td><span class="font-size-075em">0.445</span></td>
+                            </tr>
+                            <tr>
+                              <td><span class="font-size-075em">3</span></td>
+                              <td><span class="font-size-075em">Expect [1,2,3] to not be empty</span></td>
+                              <td><span class="font-size-075em"></span></td>
+                              <td><span class="font-size-075em">--</span></td>
+                              <td><span class="font-size-075em label label-success">Passed</span></td>
+                              <td><span class="font-size-075em">0.556</span></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+    <div class="clearfix"></div>
+
+  </body>
+</html>
