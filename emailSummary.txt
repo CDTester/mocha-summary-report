@@ -2,8 +2,8 @@ Project: proj1
 Project Version: Release_1
 Test Cycle: smoke_test
 Environment: evt1
-Run Start Time: 10/12/2025 20:10:30.931
-Run End Time: 20:10:35.378
+Run Start Time: 10/12/2025 21:08:11.736
+Run End Time: 21:08:16.183
 Duration: 00:00:04.447
 Total Tests: 3
 Passed Tests: 2
