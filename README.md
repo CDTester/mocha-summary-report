@@ -5,7 +5,7 @@ Generates summary reports of all the suites executed in a single Mocha execution
 [![Test Report](https://github.com/CDTester/mocha-summary-report/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/CDTester/mocha-summary-report/actions/workflows/pages/pages-build-deployment)
 
 ## Latest Build Report
-https://cdtester.github.io/mocha-summary-report/
+https://cdtester.github.io/mocha-summary-report/summary-report.html
 
 
 ## Console Summary Feature
