@@ -7,6 +7,7 @@ const moment = require('moment');
 const util = require('util');
 const testResultBuilder = require('./lib/testResultBuilder.js');
 const summaryGenerator = require('./lib/summaryReportGenerator.js');
+let isDescribeInDescribe = false;
 let isParallel = false;
 let suiteNumber = 0;
 let stepNumber = 0;
@@ -41,15 +42,18 @@ function summaryReport (summary, config) {
 
   // On EVENT_SUITE_BEGIN (test) start a temp collection of test stats.  Only starts a collection where the suite.root = false.
   summary.on(event.EVENT_SUITE_BEGIN, function (suiteBegin) {
+    if (suiteBegin.root && suiteBegin.suites[0].suites.length > 0) isDescribeInDescribe = true;
     if (isParallel) {
       if (suiteBegin.root === false) {
         suiteNumber++;
         tempResults[suiteBegin.__mocha_id__] = testResultBuilder.buildSuiteStart(suiteBegin, config, suiteNumber);
+        // console.log('suiteBegin.__mocha_id__: ', suiteBegin.__mocha_id__)
       }
     }
     else {
       if (suiteBegin.root === false) {
         tempResults[suiteNumber] = testResultBuilder.buildSuiteStart(suiteBegin, config, suiteNumber + 1);
+        // console.log('suiteNumber: ', suiteNumber)
       }
     }
   });
@@ -125,7 +129,6 @@ function summaryReport (summary, config) {
         const retryDuration = tempResults[testStepEnd.parent.__mocha_id__].steps[testStepEnd.retriedTest().__mocha_id__].duration;
         duration = retryDuration + testStepEnd.duration;
         tempResults[testStepEnd.parent.__mocha_id__].steps.push(testResultBuilder.buildTestStepEnd(testStepEnd, parallelStepNumber, duration));
-
         // Delete the temporary element for the step
         delete tempResults[testStepEnd.parent.__mocha_id__].steps[testStepEnd.retriedTest().__mocha_id__];
       }
@@ -143,14 +146,17 @@ function summaryReport (summary, config) {
     }
   });
 
+
   // On the EVENT_SUITE_END (test), summarise the test steps
   summary.on(event.EVENT_SUITE_END, function (suite) {
+    let testDetails;
     try {
       if (isParallel) {
         // when suite.root is true, the suite has finished.
-        if (suite.root) {
-          const testDetails = testResultBuilder.buildSuiteEnd(tempResults[suite.suites[0].__mocha_id__], config, suiteNumber);
-
+        if (!isDescribeInDescribe && suite.root) {
+          if (suite.suites !== undefined) {
+            testDetails = testResultBuilder.buildSuiteEnd(tempResults[suite.suites[0].__mocha_id__], config, suiteNumber);
+          }
           results.tests.push(testDetails);
 
           console.log(`\t **********************************************************`);
@@ -158,23 +164,38 @@ function summaryReport (summary, config) {
           console.log(`\t Total Steps = ${testDetails.totalSteps}, Passed = ${testDetails.passedSteps}, Failed = ${testDetails.failedSteps}, Pending = ${testDetails.skippedSteps}`);
           console.log(`\t **********************************************************`);
         }
-      }
-      else {
-        if (suite.root === false) {
-          const testDetails = testResultBuilder.buildSuiteEnd(tempResults[suiteNumber], config, suiteNumber);
+        if (isDescribeInDescribe && suite.root) {
+          const suites = suite.suites[0].suites
+          for (let suite of suites) {
+            testDetails = testResultBuilder.buildSuiteEnd(tempResults[suite.__mocha_id__], config, suiteNumber);
+            results.tests.push(testDetails);
 
-          if (testDetails !== undefined) results.tests.push(testDetails);
-
-          // summary for this suite
-          if (suite.tests.length > 0 && suite.ctx._runnable !== undefined && config.reporterOptions.consoleSummary) {
             console.log(`\t **********************************************************`);
             console.log(`\t ${testDetails.title} Summary`);
             console.log(`\t Total Steps = ${testDetails.totalSteps}, Passed = ${testDetails.passedSteps}, Failed = ${testDetails.failedSteps}, Pending = ${testDetails.skippedSteps}`);
             console.log(`\t **********************************************************`);
+
           }
-          suiteNumber++;
-          stepNumber = 0;
         }
+      }
+      else {
+        if (!isDescribeInDescribe && !suite.root && suite.tests.length > 0) {
+          testDetails = testResultBuilder.buildSuiteEnd(tempResults[suiteNumber], config, suiteNumber);
+        }
+        if (isDescribeInDescribe && !suite.root && suite.tests.length > 0) {
+          testDetails = testResultBuilder.buildSuiteEnd(tempResults[suiteNumber], config, suiteNumber);
+        }
+        if (testDetails !== undefined) results.tests.push(testDetails);
+
+        // summary for this suite
+        if (suite.tests.length > 0 && suite.ctx._runnable !== undefined && config.reporterOptions.consoleSummary) {
+          console.log(`\t **********************************************************`);
+          console.log(`\t ${testDetails.title} Summary`);
+          console.log(`\t Total Steps = ${testDetails.totalSteps}, Passed = ${testDetails.passedSteps}, Failed = ${testDetails.failedSteps}, Pending = ${testDetails.skippedSteps}`);
+          console.log(`\t **********************************************************`);
+        }
+        suiteNumber++;
+        stepNumber = 0;
       }
     }
     catch (err) {

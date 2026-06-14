@@ -1,14 +1,14 @@
-import envData from '../src/utils/loadEnvData';
+import envData from '../../src/utils/loadEnvData';
 import { expect } from 'chai';
 import { step } from 'mocha-steps';
 import addContext from 'mochawesome/addContext';
-import { wait } from '../src/utils/date';
+import { wait } from '../../src/utils/date';
 let a = false;
 let i = 1;
 let retryResults = [];
 const env = new envData('example1.test.ts').getEnvData;
 
-describe(`Example test 1 @componentA @smoke $JIRA-1234`, async function () {
+describe.skip(`SEARCH skip flaky Example test using setp steps 3 @search @regression @flaky $JIRA-5003`, async function () {
 
   step(`show environment data`, async function () {
     await wait(111);
@@ -23,7 +23,7 @@ describe(`Example test 1 @componentA @smoke $JIRA-1234`, async function () {
     expect(1).to.equal(1);
   });
 
-  step(`Expect true to be true`, async function () {
+  step(`Expect true to be true, retries and fails`, async function () {
       await wait(999);
       let b = a;
       if (i === 2) a = true;
