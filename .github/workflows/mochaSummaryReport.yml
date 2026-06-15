@@ -37,7 +37,7 @@ jobs:
       # Run Mocha Tests
       - name: 🧪 Run Mocha tests
         id: tests
-        run: npm run test --testenv=evt1
+        run: npm run test --testenv=evt1 -- test/**/*
         continue-on-error: true
 
       # Get Test results
