@@ -12,7 +12,6 @@ module.exports = {
     global: ['$'],
     'inline-diffs': true,
     jobs: 3,
-    loader: "ts-node/esm",
     package: './package.json',
     parallel: true,
     recursive: true,
