@@ -12,20 +12,35 @@
         "reportPageTitle": "Test Report"
     },
     "mochaSummaryReportReporterOptions": {
-        "environmentVar": "npm_config_testenv",
-        "projectName": "npm_config_zephyr_project_name",
-        "projectVersion": "npm_config_zephyr_version",
-        "projectCycle": "npm_config_zephyr_cycle",
-        "manualTestLink": "npm_config_zephyr_url",
+        "environmentVar": "TESTENV",
+        "projectName": "ZEPHYR_PROJECT_NAME",
+        "projectVersion": "ZEPHYR_VERSION",
+        "projectCycle": "ZEPHYR_CYCLE_NAME",
+        "manualTestLink": "ZEPHYR_URL",
+        "testsFolder": "./test",
         "output": "test_report",
+        "testPhases": ["smoke", "regression"],
         "testIDPrefix": "$",
         "tagPrefix": "@",
-        "consoleSummary": "true",
-        "textFileSummary": "true",
+        "consoleSummary": "false",
+        "textFileSummary": "false",
         "htmlSummary": "true",
         "passRateGreen": 80,
         "passRateAmber": 70,
         "otherReportLink": "test-report.html",
         "includeMochaBase": false
+    },
+    "envData": {
+        "TESTENV": "dev",
+        "ZEPHYR_UPDATE": "no",
+        "ZEPHYR_USER": "CDTester",
+        "ZEPHYR_PROJECT_NAME": "proj1",
+        "ZEPHYR_VERSION": "1",
+        "ZEPHYR_CYCLE_NAME": "Cycle 123",
+        "ZEPHYR_CLONE_CYCLE": "no",
+        "ZEPHYR_CLONE_VERSION": "Master_Test_Suite",
+        "ZEPHYR_CLONE_CYCLE_NAME": "Smoke_Tests",
+        "ZEPHYR_CYCLE": "smoke_test",
+        "ZEPHYR_URL": "https://company.domain/jira/browse/"
     }
 }

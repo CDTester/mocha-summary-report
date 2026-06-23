@@ -5,7 +5,7 @@ import { wait } from '../../src/utils/date';
 let a = false;
 let i = 1;
 let retryResults = [];
-const env = new envData('example1.test.ts').getEnvData;
+const env = envData.getEnvData();
 
 describe(`CHECKOUT flaky test with it steps 2 @checkout @regression @flaky $JIRA-3002`, async function () {
 

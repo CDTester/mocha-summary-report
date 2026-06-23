@@ -2,9 +2,8 @@ import envData from '../../src/utils/loadEnvData';
 import { expect } from 'chai';
 import { step } from 'mocha-steps';
 import { wait } from '../../src/utils/date';
+const env = envData.getEnvData();
 
-
-const env = new envData('example2.test.ts').getEnvData;
 
 describe(`USER Example test using step steps 7 @user @regression $JIRA-6007`, async function () {
 

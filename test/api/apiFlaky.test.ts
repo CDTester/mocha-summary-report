@@ -6,7 +6,7 @@ import { wait } from '../../src/utils/date';
 let a = false;
 let i = 1;
 let retryResults = [];
-const env = new envData('example1.test.ts').getEnvData;
+const env = envData.getEnvData();
 
 describe(`API Example test using setp steps 2 @api @regression @flaky $JIRA-1002`, async function () {
 

@@ -2,9 +2,7 @@ import envData from '../../src/utils/loadEnvData';
 import { expect } from 'chai';
 import { step } from 'mocha-steps';
 import { wait } from '../../src/utils/date';
-
-
-const env = new envData('example2.test.ts').getEnvData;
+const env = envData.getEnvData();
 
 describe.skip(`API Example test using setp steps 3 @api @regression $JIRA-1003`, async function () {
 

@@ -12,6 +12,7 @@ module.exports = {
     global: ['$'],
     'inline-diffs': true,
     jobs: 3,
+    loader: "ts-node/esm",
     package: './package.json',
     parallel: true,
     recursive: true,
@@ -33,6 +34,7 @@ module.exports = {
     //     'passRateAmber=70'
     // ],
     require: [
+        "./src/utils/set-env.js",
         "mocha-steps",
         "ts-node/register",
         "mochawesome/register"
@@ -40,7 +42,7 @@ module.exports = {
     retries: 4,
     slow: '600',
     sort: false,
-    spec: ['test/*'],
+    spec: ['test/**/*.ts'],
     timeout: '120000',
     'trace-warnings': false,
     ui: 'bdd', // Other options: 'tdd', 'qunit', 'exports'

@@ -2,9 +2,8 @@ import envData from '../../src/utils/loadEnvData';
 import { expect } from 'chai';
 import { step } from 'mocha-steps';
 import { wait } from '../../src/utils/date';
+const env = envData.getEnvData();
 
-
-const env = new envData('example2.test.ts').getEnvData;
 
 describe(`SEARCH Example testusing step steps 1 @search @smoke $JIRA-5001`, async function () {
 

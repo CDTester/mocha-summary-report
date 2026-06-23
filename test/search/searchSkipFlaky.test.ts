@@ -6,7 +6,7 @@ import { wait } from '../../src/utils/date';
 let a = false;
 let i = 1;
 let retryResults = [];
-const env = new envData('example1.test.ts').getEnvData;
+const env = envData.getEnvData();
 
 describe.skip(`SEARCH skip flaky Example test using setp steps 3 @search @regression @flaky $JIRA-5003`, async function () {
 

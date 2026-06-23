@@ -1,34 +1,43 @@
+/// <reference types="node" />
 import fs from 'fs';
 import path from 'path';
+const config = require('config');
 
 /**
  * class to get test env data
  * This class loads environment specific data from config files
 */
 export default class envData {
-  private _envData: object;
-  private _test: string;
+  private static instance: envData;
+  private _envData: object = {};
+  private env: string | undefined;
 
-  constructor (test) {
-    this._test = test;
-    this._envData = this.loadEnvironmentData(process.env.npm_config_testenv);
+  // Singleton pattern to ensure only one instance of envData is created per test run
+  private constructor () {
 
-    process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+    this.env = process.env.TESTENV;
+    if (this.env !== 'production' && this.env !== 'prod') {
+      process.env.NODE_TLS_REJECT_UNAUTHORIZED ? null: process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+    }
+    console.log(`envData constructed`);
   }
 
-  get getEnvData () {
-    return JSON.parse(JSON.stringify(this._envData));
-  }
 
-  private loadEnvironmentData (envName: string | undefined) {
-    let envData;
+  public static getEnvData(): object {
+    if (!envData.instance) {
+      envData.instance = new envData();
+    }
+    if (!envData.instance.env) {
+      envData.instance.env = config.default_env;
+      console.log(`\x1b[93m No environment specified for test run, using default: ${envData.instance.env} \x1b[0m`);
+    }
 
-    const pth = path.resolve(process.cwd(), 'config', 'environments', `${envName}.json`);
-    console.log(`\x1b[92m Using environment config from ${pth} for test ${this._test}  \x1b[0m`);
+    const pth = path.resolve(process.cwd(), 'config', 'environments', `${envData.instance.env}.json`);
+    //console.log(`\x1b[92m Using environment config from ${pth} for test ${this._test}  \x1b[0m`);
 
     if (fs.existsSync(pth)) {
       try {
-        envData = JSON.parse(fs.readFileSync(pth).toString());
+        envData.instance._envData = JSON.parse(fs.readFileSync(pth).toString());
       }
       catch (error) {
         if (error instanceof Error) {
@@ -39,6 +48,7 @@ export default class envData {
     else {
       throw new Error(`<FATAL> Cannot find the environment file: ${pth}`);
     }
-    return envData;
-  }
+	return JSON.parse(JSON.stringify(envData.instance._envData));
+	}
+
 }

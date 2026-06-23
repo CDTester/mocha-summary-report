@@ -2,9 +2,7 @@ import envData from '../../src/utils/loadEnvData';
 import { expect } from 'chai';
 import { step } from 'mocha-steps';
 import { wait } from '../../src/utils/date';
-
-
-const env = new envData('example2.test.ts').getEnvData;
+const env = envData.getEnvData();
 
 describe(`Navigation tests in one file`, async function () {
 

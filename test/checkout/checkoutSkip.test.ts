@@ -1,9 +1,7 @@
 import envData from '../../src/utils/loadEnvData';
 import { expect } from 'chai';
 import { wait } from '../../src/utils/date';
-
-
-const env = new envData('example2.test.ts').getEnvData;
+const env = envData.getEnvData();
 
 describe.skip(`CHECKOUT skip test with it steps 4 @checkout @regression $JIRA-2004`, async function () {
 
