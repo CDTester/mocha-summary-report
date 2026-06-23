@@ -30,12 +30,13 @@ function summaryReport (summary, config) {
   summary.on(event.EVENT_RUN_BEGIN, function () {
     // get start time
     results.info.runDate = moment().local().format('YYYY-MM-DD');
-    results.info.startTime = moment(this.stats.start).local().format('HH:mm:ss.SSS');
+    results.info.startTime = moment(this.stats.start).local().format('HH:mm:ss');
     results.info.startDuration = moment(this.stats.start).utc();
     let parallel = '';
     if (process.argv.includes('--parallel')) {
       isParallel = true;
       parallel = 'in parallel mode';
+      results.info.parallel = true
     }
     console.log(`\x1b[32mStarting Test Suite ${parallel}\x1b[0m`);
   });
@@ -47,13 +48,11 @@ function summaryReport (summary, config) {
       if (suiteBegin.root === false) {
         suiteNumber++;
         tempResults[suiteBegin.__mocha_id__] = testResultBuilder.buildSuiteStart(suiteBegin, config, suiteNumber);
-        // console.log('suiteBegin.__mocha_id__: ', suiteBegin.__mocha_id__)
       }
     }
     else {
       if (suiteBegin.root === false) {
         tempResults[suiteNumber] = testResultBuilder.buildSuiteStart(suiteBegin, config, suiteNumber + 1);
-        // console.log('suiteNumber: ', suiteNumber)
       }
     }
   });
@@ -206,10 +205,11 @@ function summaryReport (summary, config) {
   // On the EVENT_RUN_END (suite), summarise all the tests and collect information about the suite run time. Then call for the reports to be generated. 
   summary.once(event.EVENT_RUN_END, function () {
     // get end time
-    results.info.endTime = moment(this.stats.end).local().format('HH:mm:ss.SSS');
+    results.info.endTime = moment(this.stats.end).local().format('HH:mm:ss');
     results.info.endDuration = moment(this.stats.end).utc();
     results.info.duration = results.info.endDuration.subtract(results.info.startDuration).format('HH:mm:ss.SSS');
     results.info.durationSeconds = this.stats.duration / 1000;
+    results.info.parallel = isParallel;
 
     // add summmary of all test suites to the results object
     const summaryDetails = testResultBuilder.buildSummaryResults(results, config);

@@ -71,6 +71,13 @@ async function summaryReportEmail (result, config) {
  * @param {object} config reporter options for suiteReport
 */
 async function summaryReportHtml (result, config) {
+  handlebars.registerHelper('isPhaseTag', (tag) => tag === 'smoke' || tag === 'regression');
+  handlebars.registerHelper('isPhaseSummary', (tag) => tag === 'smoke' || tag === 'regression');
+  handlebars.registerHelper('isNotPhaseSummary', (tag) => tag !== 'smoke' && tag !== 'regression');
+  handlebars.registerHelper('eq', (a,b) => a === b);
+  handlebars.registerHelper('noteq', (a,b) => a !== b);
+  handlebars.registerHelper('or', (a,b) => a || b);
+
   try {
     // build up sections to go in report.html template
     const data = {

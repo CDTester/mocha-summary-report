@@ -1,67 +1,219 @@
-        <h2 class="col-xs-12 col-sm-12 col-md-12 col-lg-12">Summary</h2>
-
-        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 padding-left-right-5  padding-bottom-5">
-          <div class="panel panel-primary">
-            <div class="panel-heading lead no-margin">Test Suite Summary</div>
-            <div class="panel-body">
-              <div class="col-xs-6 col-sm-6 col-md-6 col-lg-5 padding-left-right-5">
-                <div class="col-xs-6 col-sm-6 col-md-5 col-lg-4 padding-left-right-5 ellipsis"><b>Run:</b></div>
-                <div class="col-xs-6 col-sm-6 col-md-7 col-lg-8 padding-left-right-5">{{totalTests}}</div>
-                <div class="col-xs-6 col-sm-6 col-md-5 col-lg-4 padding-left-right-5 ellipsis"><b>Passed:</b></div>
-                <div class="col-xs-6 col-sm-6 col-md-7 col-lg-8 padding-left-right-5">{{totalTestsPassed}}</div>
-                <div class="col-xs-6 col-sm-6 col-md-5 col-lg-4 padding-left-right-5 ellipsis"><b>Skipped:</b></div>
-                <div class="col-xs-6 col-sm-6 col-md-7 col-lg-8 padding-left-right-5">{{totalTestsSkipped}}</div>
-                <div class="col-xs-6 col-sm-6 col-md-5 col-lg-4 padding-left-right-5 ellipsis"><b>Failed:</b></div>
-                <div class="col-xs-6 col-sm-6 col-md-7 col-lg-8 padding-left-right-5">{{totalTestsFailed}}</div>
-              </div>
-              <div class="col-xs-3 col-sm-3 col-md-4 col-lg-3 {{testPassedRateColor}} text-center">
-                <div class="no-margin"><b>Passed Rate:</b></div>
-                <div class="col lg-percentage hidden-xs hidden-sm hidden-md">{{testPassedRate}}%</div>
-                <div class="col md-percentage hidden-xs hidden-sm hidden-lg">{{testPassedRate}}%</div>
-                <div class="col sm-percentage hidden-xs hidden-md hidden-lg">{{testPassedRate}}%</div>
-                <div class="col xs-percentage hidden-sm hidden-md hidden-lg">{{testPassedRate}}%</div>
-              </div>
-              <div class="col-xs-3 col-sm-3 col-md-2 col-lg-3 padding-top-bottom-5 text-center">
-                <div class="no-margin"><b>Tests/s:</b></div>
-                <div class="col lg-percentage hidden-xs hidden-sm hidden-md">{{testPerSecond}}</div>
-                <div class="col md-percentage hidden-xs hidden-sm hidden-lg">{{testPerSecond}}</div>
-                <div class="col sm-percentage hidden-xs hidden-md hidden-lg">{{testPerSecond}}</div>
-                <div class="col xs-percentage hidden-sm hidden-md hidden-lg">{{testPerSecond}}</div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <br>
-
-        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 padding-left-right-5">
-          <div class="panel panel-primary">
-            <div class="panel-heading lead no-margin">Test Step Summary</div>
-              <div class="panel-body">
-                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-5 padding-left-right-5">
-                  <div class="col-xs-6 col-sm-6 col-md-5 col-lg-4 padding-left-right-5 ellipsis"><b>Run:</b></div>
-                  <div class="col-xs-6 col-sm-6 col-md-7 col-lg-8 padding-left-right-5">{{totalTestSteps}}</div>
-                  <div class="col-xs-6 col-sm-6 col-md-5 col-lg-4 padding-left-right-5 ellipsis"><b> Passed:</b></div>
-                  <div class="col-xs-6 col-sm-6 col-md-7 col-lg-8 padding-left-right-5">{{totalPassedSteps}}</div>
-                  <div class="col-xs-6 col-sm-6 col-md-5 col-lg-4 padding-left-right-5 ellipsis"><b>Skipped:</b></div>
-                  <div class="col-xs-6 col-sm-6 col-md-7 col-lg-8 padding-left-right-5">{{totalSkippedSteps}}</div>
-                  <div class="col-xs-6 col-sm-6 col-md-5 col-lg-4 padding-left-right-5 ellipsis"><b>Failed:</b></div>
-                  <div class="col-xs-6 col-sm-6 col-md-7 col-lg-8 padding-left-right-5">{{totalFailedSteps}}</div>
+        <div class="container padding-left-right-15 padding-top-bottom-15">
+          <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 padding-left-right-5 padding-bottom-5">
+              <div class="card">
+                <div class="card-header card-title bg-primary text-white lead no-margin">Test Suite Summary</div>
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-8 col-sm-8 col-md-7 col-lg-6 padding-left-right-15">
+                        <div class="row">
+                          <div class="col-6 padding-left-right-5 ellipsis"><b>Run:</b></div>
+                          <div class="col-6 padding-left-right-5">{{totalTests}}</div>
+                          <div class="col-6 padding-left-right-5 ellipsis"><b>Passed:</b></div>
+                          <div class="col-6 padding-left-right-5">{{totalTestsPassed}}</div>
+                          <div class="col-6 padding-left-right-5 ellipsis"><b>Skipped:</b></div>
+                          <div class="col-6 padding-left-right-5">{{totalTestsSkipped}}</div>
+                          <div class="col-6 padding-left-right-5 ellipsis"><b>Failed:</b></div>
+                          <div class="col-6 padding-left-right-5">{{totalTestsFailed}}</div>
+                        </div>
+                      </div>
+                      <div class="col-4 col-sm-4 col-md-4 col-lg-3 padding-top-bottom-5 text-center">
+                        <div class="no-margin percentageTitle"><b>Tests/s:</b></div>
+                        <div class="percentageTitle">{{testPerSecond}}</div>
+                      </div>
+                      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3 {{testPassedRateColor}} text-center">
+                        <div class="no-margin percentageTitle"><b>Passed Rate:</b></div>
+                        <div class="percentage">{{testPassedRate}}%</div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div class="col-xs-3 col-sm-3 col-md-4 col-lg-3 {{stepPassedRateColor}} text-center">
-                  <div class="no-margin"><b>Passed Rate:</b></div>
-                  <div class="col lg-percentage hidden-xs hidden-sm hidden-md">{{testStepPassedRate}}%</div>
-                  <div class="col md-percentage hidden-xs hidden-sm hidden-lg">{{testStepPassedRate}}%</div>
-                  <div class="col sm-percentage hidden-xs hidden-md hidden-lg">{{testStepPassedRate}}%</div>
-                  <div class="col xs-percentage hidden-sm hidden-md hidden-lg">{{testStepPassedRate}}%</div>
-                </div>
-                <div class="col-xs-3 col-sm-3 col-md-2 col-lg-3 padding-top-bottom-5 text-center">
-                  <div class="no-margin"><b>Steps/s:</b></div>
-                  <div class="col lg-percentage hidden-xs hidden-sm hidden-md">{{stepsPerSecond}}</div>
-                  <div class="col md-percentage hidden-xs hidden-sm hidden-lg">{{stepsPerSecond}}</div>
-                  <div class="col sm-percentage hidden-xs hidden-md hidden-lg">{{stepsPerSecond}}</div>
-                  <div class="col xs-percentage hidden-sm hidden-md hidden-lg">{{stepsPerSecond}}</div>
+              </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 padding-left-right-5 padding-bottom-5">
+            <div class="card">
+              <div class="card-header card-title bg-primary text-white lead no-margin">Test Step Summary</div>
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-8 col-sm-8 col-md-8 col-lg-6 padding-left-right-15">
+                      <div class="row">
+                        <div class="col-6 padding-left-right-5 ellipsis"><b>Run:</b></div>
+                        <div class="col-6 padding-left-right-5">{{totalTestSteps}}</div>
+                        <div class="col-6 padding-left-right-5 ellipsis"><b> Passed:</b></div>
+                        <div class="col-6 padding-left-right-5">{{totalPassedSteps}}</div>
+                        <div class="col-6 padding-left-right-5 ellipsis"><b>Skipped:</b></div>
+                        <div class="col-6 padding-left-right-5">{{totalSkippedSteps}}</div>
+                        <div class="col-6 padding-left-right-5 ellipsis"><b>Failed:</b></div>
+                        <div class="col-6 padding-left-right-5">{{totalFailedSteps}}</div>
+                      </div>
+                    </div>
+                    <div class="col-4 col-sm-4 col-md-4 col-lg-3 padding-top-bottom-5 text-center">
+                      <div class="no-margin percentageTitle"><b>Steps/s:</b></div>
+                      <div class="percentageTitle">{{stepsPerSecond}}</div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3 {{stepPassedRateColor}} text-center">
+                      <div class="no-margin percentageTitle"><b>Passed Rate:</b></div>
+                      <div class="percentage">{{testStepPassedRate}}%</div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
+
+        <div class="container padding-left-right-5 padding-top-bottom-15">
+          <div class="card">
+            <div class="card-header card-title bg-primary text-white lead no-margin">Risk Summary</div>
+            <div class="card-body">
+              <span><b>Passed Rate: </b>this indicates how many tests passed, how many failed and how many were out of the tests that were run were flaky.</span><br>
+              <span><b>Coverage: </b>this indicates how many tests were run out of all your tests. It also indicates how many of the skipped tests were flaky.</span><br>
+              <span><b>Confidence: </b>this score takes adjust your passed rate with a penallty for running flaky tests (percentage of flaky tests run * 40%) and reduces it coverage gap.</span><br>
+              <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-4 padding-left-right-5 padding-top-bottom-5">
+                  <div class="card">
+                    <div class="card-header card-title bg-light text-dark lead no-margin"><b>Total</b></div>
+                    <div class="card-body">
+                      <div class="no-margin ellipsis">
+                        <div class="no-margin ellipsis"><b>Passed Rate:</b></div>
+                        <div class="w3-border {{total.paleColourPassed}} w3-small w3-round-xlarge">
+                          <div class="w3-container {{total.colourPassed}} w3-center w3-round-xlarge" style="width:{{total.passedPercent}}%">
+                            {{total.passedPercent}}%
+                          </div>
+                        </div>
+                        <span class="font-size-085em">
+                            <span><span style="color: green">✓ {{total.passed}}</span> passed</span>
+                            <span><span style="color: red">✗ {{total.failed}}</span> failed</span>
+                            <span><span style="color:red">🛠️ {{total.riskFlaky}}</span> flaky</span>
+                          </span>
+                        <br>
+                        <div class="no-margin ellipsis"><b>Coverage:</b></div>
+                        <div class="w3-border {{total.paleColourCoverage}} w3-small w3-round-xlarge">
+                          <div class="w3-container {{total.colourCoverage}} w3-center w3-round-xlarge" style="width:{{total.coveragePercent}}%">
+                            {{total.coveragePercent}}%
+                          </div>
+                        </div>
+                        <span class="font-size-085em"> {{total.coverageText}}</span>
+                        <br>
+                        <div class="no-margin ellipsis"><b>Confidence:</b></div>
+                        <div class="w3-border {{total.paleColourConfidence}} w3-small w3-round-xlarge">
+                          <div class="w3-container {{total.colourConfidence}} w3-center w3-round-xlarge" style="width:{{total.confidence}}%">
+                            {{total.confidence}}%
+                          </div>
+                        </div>
+                        <span class="font-size-085em">
+                          <span style="color: orangered">-{{total.flakyDrop}}% flaky penalty</span>
+                          <span style="color:royalblue">-{{total.coverageDrop}}% coverage gap</span>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {{#each this.byTag as | tag |}}
+                {{#if (isPhaseSummary tag.key)}}
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-4 padding-left-right-5 padding-top-bottom-5">
+                  <div class="card">
+                    <div class="card-header card-title bg-light text-dark lead no-margin"><b>{{tag.key}}</b></div>
+                    <div class="card-body">
+                      <div class="no-margin ellipsis">
+                        <div class="no-margin ellipsis"><b>Passed Rate:</b></div>
+                        <div class="w3-border {{tag.paleColourPassed}} w3-small w3-round-xlarge">
+                          <div class="w3-container {{tag.colourPassed}} w3-center w3-round-xlarge" style="width:{{tag.passedPercent}}%">
+                            {{tag.passedPercent}}%
+                          </div>
+                        </div>
+                        <span class="font-size-085em">
+                            <span><span style="color: green">✓ {{tag.passed}}</span> passed</span>
+                            <span><span style="color: red">✗ {{tag.failed}}</span> failed</span>
+                            <span><span style="color:red">🛠️ {{tag.riskFlaky}}</span> flaky</span>
+                          </span>
+                        <br>
+                        <div class="no-margin ellipsis"><b>Coverage:</b></div>
+                        <div class="w3-border {{tag.paleColourCoverage}} w3-small w3-round-xlarge">
+                          <div class="w3-container {{tag.colourCoverage}} w3-center w3-round-xlarge" style="width:{{tag.coveragePercent}}%">
+                            {{tag.coveragePercent}}%
+                          </div>
+                        </div>
+                        <span class="font-size-085em"> {{tag.coverageText}}</span>
+                        <br>
+                        <div class="no-margin ellipsis"><b>Confidence:</b></div>
+                        <div class="w3-border {{tag.paleColourConfidence}} w3-small w3-round-xlarge">
+                          <div class="w3-container {{tag.colourConfidence}} w3-center w3-round-xlarge" style="width:{{tag.confidence}}%">
+                            {{tag.confidence}}%
+                          </div>
+                        </div>
+                        <span class="font-size-085em">
+                          <span style="color: orangered">-{{tag.flakyDrop}}% flaky penalty</span>
+                          <span style="color:royalblue">-{{tag.coverageDrop}}% coverage gap</span>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {{/if}}
+                {{/each}}
+                <br>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container padding-left-right-5 padding-top-bottom-15">
+          <div class="card">
+            <div class="card-header card-title bg-primary text-white lead no-margin">Risk By Component</div>
+            <div class="card-body">
+              <div class="row">
+                {{#each this.byTag as | tag |}}
+                {{#if (isNotPhaseSummary tag.key)}}
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-4 padding-left-right-5 padding-top-bottom-5">
+                  <div class="card">
+                    <div class="card-header card-title bg-light text-dark lead no-margin"><b>{{tag.key}}</b></div>
+                    <div class="card-body">
+                      <div class="no-margin ellipsis">
+                        <div class="no-margin ellipsis">
+                          <b>Passed Rate:</b>
+                        </div>
+                        <div class="w3-border {{tag.paleColourPassed}} w3-small w3-round-xlarge">
+                          <div class="w3-container {{tag.colourPassed}} w3-center w3-round-xlarge" style="width:{{tag.passedPercent}}%">
+                            {{tag.passedPercent}}%
+                          </div>
+                        </div>
+                        <span class="font-size-085em">
+                            <span><span style="color: green">✓ {{tag.passed}}</span> passed</span>
+                            <span><span style="color: red">✗ {{tag.failed}}</span> failed</span>
+                            <span><span style="color:red">🛠️ {{tag.riskFlaky}}</span> flaky</span>
+                          </span>
+                        <br>
+                        <div class="no-margin ellipsis">
+                          <b>Coverage:</b>
+                        </div>
+                        <div class="w3-border {{tag.paleColourCoverage}} w3-small w3-round-xlarge">
+                          <div class="w3-container {{tag.colourCoverage}} w3-center w3-round-xlarge" style="width:{{tag.coveragePercent}}%">
+                            {{tag.coveragePercent}}%
+                          </div>
+                        </div>
+                        <span class="font-size-085em"> {{tag.coverageText}}</span>
+                        <br>
+                        <div class="no-margin ellipsis">
+                          <b>Confidence:</b>
+                        </div>
+                        <div class="w3-border {{tag.paleColourConfidence}} w3-small w3-round-xlarge">
+                          <div class="w3-container {{tag.colourConfidence}} w3-center w3-round-xlarge" style="width:{{tag.confidence}}%">
+                            {{tag.confidence}}%
+                          </div>
+                        </div>
+                        <span class="font-size-085em">
+                          <span style="color: orangered">-{{tag.flakyDrop}}% flaky penalty</span>
+                          <span style="color:royalblue">-{{tag.coverageDrop}}% coverage gap</span>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {{/if}}
+                {{/each}}
+                <br>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
