@@ -127,13 +127,16 @@ function buildSuiteEnd (suite) {
 function buildSummaryResults (suite, _config) {
   const summary = {};
 
+  // list test phases
+  summary.suiteTags = config.get('mochaSummaryReportReporterOptions.testPhases') || ['smoke', 'regression']; // these overlap with area tags, exclude from total
+
   // get test summary
   summary.totalTests = suite.tests.length || "0";
   summary.totalTestsPassed = suite.tests.filter(e => e.passedSteps === e.totalSteps).length || 0;
   summary.totalTestsFailed = suite.tests.filter(e => e.failedSteps > 0).length || 0;
   summary.totalTestsSkipped = summary.totalTests - (summary.totalTestsPassed + summary.totalTestsFailed) || 0;
-  summary.testPassedRate = ((summary.totalTestsPassed / (summary.totalTests - summary.totalTestsSkipped)) * 100).toFixed(2) || "0.00";
-  summary.testPerSecond = ((summary.totalTestsPassed + summary.totalTestsFailed) / suite.info.durationSeconds).toFixed(2) || "0.00";
+  summary.testPassedRate = summary.totalTests > 0 ? ((summary.totalTestsPassed / (summary.totalTests - summary.totalTestsSkipped)) * 100).toFixed(2) : 0.00;
+  summary.testPerSecond = summary.totalTests > 0 ? ((summary.totalTestsPassed + summary.totalTestsFailed) / suite.info.durationSeconds).toFixed(2) : 0.00;
 
   // The passed rate can be assigned a colour of red/amber/green based on custom criteria set out in the reporter options
   const green = _config.reporterOptions.passRateGreen || 90;
@@ -153,8 +156,8 @@ function buildSummaryResults (suite, _config) {
   summary.totalPassedSteps = suite.tests.reduce((accumulator, test) => accumulator + Number(test.passedSteps), 0) || 0;
   summary.totalFailedSteps = suite.tests.reduce((accumulator, test) => accumulator + Number(test.failedSteps), 0) || 0;
   summary.totalSkippedSteps = suite.tests.reduce((accumulator, test) => accumulator + Number(test.skippedSteps), 0) || 0;
-  summary.testStepPassedRate = ((summary.totalPassedSteps / (summary.totalTestSteps - summary.totalSkippedSteps)) * 100).toFixed(2) || "0.00";
-  summary.stepsPerSecond = ((summary.totalPassedSteps + summary.totalFailedSteps) / suite.info.durationSeconds).toFixed(2) || "0.00";
+  summary.testStepPassedRate = summary.totalTestSteps > 0 ? ((summary.totalPassedSteps / (summary.totalTestSteps - summary.totalSkippedSteps)) * 100).toFixed(2) : 0.00;
+  summary.stepsPerSecond = summary.totalTests > 0 ? ((summary.totalPassedSteps + summary.totalFailedSteps) / suite.info.durationSeconds).toFixed(2) : 0.00;
 
   // The passed rate can be assigned a colour of red/amber/green based on custom criteria set out in the reporter options
   if (summary.testStepPassedRate >= green) {
@@ -186,8 +189,8 @@ function buildSummaryResults (suite, _config) {
   // create passed rate, coverage and confidence stats per test
   let flaky_penalty = 0.4;
   for (const tag in summary.byTag) {
-    let passedPercent = (summary.byTag[tag].passed / (summary.byTag[tag].total - summary.byTag[tag].skipped) * 100).toFixed(2);
-    let coveragePercent = ((summary.byTag[tag].total - summary.byTag[tag].skipped) / summary.byTag[tag].total * 100).toFixed(2);
+    let passedPercent = (summary.byTag[tag].total - summary.byTag[tag].skipped) > 0 ? (summary.byTag[tag].passed / (summary.byTag[tag].total - summary.byTag[tag].skipped) * 100).toFixed(2) : 0.00;
+    let coveragePercent = summary.byTag[tag].total > 0 ? ((summary.byTag[tag].total - summary.byTag[tag].skipped) / summary.byTag[tag].total * 100).toFixed(2): 0.00;
     let coverageSkipText = ''
     let flaky_text = '';
     let nonflaky_text = '';
@@ -216,10 +219,10 @@ function buildSummaryResults (suite, _config) {
     }
 
     let coverageText = `${(summary.byTag[tag].total - summary.byTag[tag].skipped)}/${summary.byTag[tag].total} run, ${coverageSkipText} `;
-    let flakyPercent = (summary.byTag[tag].riskFlaky / summary.byTag[tag].total ).toFixed(2);
+    let flakyPercent = summary.byTag[tag].total > 0 ? (summary.byTag[tag].riskFlaky / summary.byTag[tag].total ).toFixed(2) : 0.00;
     let flakyDrop = summary.byTag[tag].total > 0 ? ((flakyPercent * flaky_penalty) * 100).toFixed(2) : 0
     let coverageDrop = summary.byTag[tag].total > 0 ? ((100 - coveragePercent )).toFixed(2) : 0
-    let confidence = summary.byTag[tag].total > 0 ? (passedPercent * (1-(flakyDrop/100)) * (1 - (coverageDrop/100))).toFixed(2) : 0
+    let confidence = passedPercent > 0 ? (passedPercent * (1-(flakyDrop/100)) * (1 - (coverageDrop/100))).toFixed(2) : 0
 
     summary.byTag[tag]['key'] = tag;
     summary.byTag[tag]['passedPercent'] = passedPercent;
@@ -271,9 +274,8 @@ function buildSummaryResults (suite, _config) {
   }
 
   // Collate data from each test to create a total set of stats  
-  const suiteTags = ['smoke', 'regression']; // these overlap with area tags, exclude from total
   summary.total = Object.entries(summary.byTag)
-    .filter(([tag]) => !suiteTags.includes(tag))
+    .filter(([tag]) => !summary.suiteTags.includes(tag))
     .reduce((acc, [, stats]) => {
       acc.total    += stats.total;
       acc.passed   += stats.passed;
@@ -285,8 +287,8 @@ function buildSummaryResults (suite, _config) {
     }, { total: 0, passed: 0, failed: 0, skipped: 0, flaky: 0, riskFlaky: 0 });
 
   // do risk summary for  all tests
-  let passedPercent = (summary.total.passed / (summary.total.total - summary.total.skipped) * 100).toFixed(2);
-  let coveragePercent = ((summary.total.total - summary.total.skipped) / summary.total.total * 100).toFixed(2);
+  let passedPercent = summary.total.passed > 0 ? (summary.total.passed / (summary.total.total - summary.total.skipped) * 100).toFixed(2) : 0.00;
+  let coveragePercent = summary.total.passed > 0 ? ((summary.total.total - summary.total.skipped) / summary.total.total * 100).toFixed(2) : 0.00;
   let coverageSkipText = ''
   let flaky_text = '';
   let nonflaky_text = '';
@@ -315,10 +317,10 @@ function buildSummaryResults (suite, _config) {
   }
 
   let coverageText = `${(summary.total.total - summary.total.skipped)}/${summary.total.total} run, ${coverageSkipText} `;
-  let flakyPercent = (summary.total.riskFlaky / summary.total.total ).toFixed(2);
-  let flakyDrop = summary.total.total > 0 ? ((flakyPercent * flaky_penalty) * 100).toFixed(2) : 0
-  let coverageDrop = summary.total.total > 0 ? ((100 - coveragePercent )).toFixed(2) : 0
-  let confidence = summary.total.total > 0 ? (passedPercent * (1-(flakyDrop/100)) * (1- (coverageDrop/100))).toFixed(2) : 0
+  let flakyPercent = summary.total.passed === 0 ? 0 : (summary.total.riskFlaky / summary.total.total ).toFixed(2);
+  let flakyDrop = summary.total.total > 0 ? ((flakyPercent * flaky_penalty) * 100).toFixed(2) : 0.00;
+  let coverageDrop = summary.total.total > 0 ? ((100 - coveragePercent )).toFixed(2) : 0.00;
+  let confidence = summary.total.total > 0 ? (passedPercent * (1-(flakyDrop/100)) * (1- (coverageDrop/100))).toFixed(2) : 0.00;
 
   summary.total['passedPercent'] = passedPercent;
   summary.total['coveragePercent'] = coveragePercent;

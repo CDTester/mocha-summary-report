@@ -19,7 +19,7 @@
         "manualTestLink": "ZEPHYR_URL",
         "testsFolder": "./test",
         "output": "test_report",
-        "testPhases": ["smoke", "regression"],
+        "testPhases": ["smoke", "regression", "e2e"],
         "testIDPrefix": "$",
         "tagPrefix": "@",
         "consoleSummary": "false",

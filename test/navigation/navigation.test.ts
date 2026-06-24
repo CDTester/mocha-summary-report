@@ -91,7 +91,7 @@ describe(`Navigation tests in one file`, async function () {
     });
   }); 
   
-  describe.skip(`NAVIGATION skip test with step steps 6 @navigation @regression $JIRA-4006`, async function () {
+  describe.skip(`NAVIGATION skip test with step steps 6 @navigation @e2e $JIRA-4006`, async function () {
     step(`Expect [1,2,3] to include 2`, async function () {
       expect([1,2,3]).to.include(2);
       await wait(500);
