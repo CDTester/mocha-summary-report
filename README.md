@@ -27,11 +27,18 @@ Provides a summary of when and where the suites were executed, a summary of all 
 
 The HTML report has a responsive web design to match most screen sizes.
 ### Large Screens
-<img align="center" src="./docs/html_summary_large_ci_jenkins.png" alt="large html report" width="100%" />
+<img align="center" src="./docs/html_summary_large_ci_jenkins_1.png" alt="large html report" width="100%" />
+<img align="center" src="./docs/html_summary_large_ci_jenkins_2.png" alt="large html report" width="100%" />
+<img align="center" src="./docs/html_summary_large_ci_jenkins_3.png" alt="large html report" width="100%" />
+<img align="center" src="./docs/html_summary_large_ci_jenkins_4.png" alt="large html report" width="100%" />
 
 
 ### Small Screens
-<img align="center" src="./docs/html_summary_small.png" alt="small html report" width="50%" />
+<img align="center" src="./docs/html_summary_small_1.png" alt="small html report" width="50%" />
+<img align="center" src="./docs/html_summary_small_2.png" alt="small html report" width="50%" />
+<img align="center" src="./docs/html_summary_small_3.png" alt="small html report" width="50%" />
+<img align="center" src="./docs/html_summary_small_4.png" alt="small html report" width="50%" />
+<img align="center" src="./docs/html_summary_small_5.png" alt="small html report" width="50%" />
 
 
 
@@ -42,34 +49,63 @@ This Section provides information about the overall details about when and where
 #### Suite Details
 This sub section provides information about the:
 - `Version` of the project release that is being tested. This information comes from process.env variable, this can be set in the CI server parameters or added to npm_config_ varaibles either in your npmrc file or as a custom option on the execution line. The location can be configured in the report options.
-- Test `Cycle` that this test executed as part of. Similar to Version, this is configurable. 
-- Test `Environment` that this test executed as part of. Similar to Version, this is configurable. 
-- `Tags` found in all the tests that were executed. Duplicate tags are removed. The tag should be placed in your test file on the Mocha Describe feature. Tags can be useful to denote what type of test (e.g. smoke, regression etc) and/or the feature of the project. The tag prefix can be configured in the reporter options. 
+- Test Cycle that this test executed as part of. Similar to Version, this is configurable. 
+- Test Environment that this test executed as part of. Similar to Version, this is configurable. 
+- Test Types this shows any test phase found in all the tags in your tests that were executed. 
+- Components this shows any tag found your tests that are not a test type/phase. 
+
+Test Types/phases is customizable, the default options are 'smoke' and 'regression'. The way this project customizes the report is via the [./config/default.json](./config/default.json). See the [reporter-options](#reporter-options) section.
+
+Duplicate tags are removed. The tag should be placed in your test file on the Mocha Describe feature. Tags can be useful to denote what type of test (e.g. smoke, regression etc) and/or the feature of the project. The tag prefix can be configured in the reporter options. 
 
 #### Run Time Details
 This sub section provides information about the:
-- `Run Date` of the test execution.
-- `Start Time` of the the first test execution.
-- `End Time` of the last test execution.
-- `Duration` of the total test executions.
+- Run Date of the test execution.
+- Start Time of the the first test execution.
+- End Time of the last test execution.
+- Duration of the total test executions.
+- Parallel Run, whether the tests were executed in parallel or not.
 
 #### CI Server Details
 This section can show some limited information about the CI/CD server the test was executed on. A custom set of functions have been created based on `env-ci` package, this is due to that package uses `import` to load modules and I could not get it to work with the `mocha-multi-reporters` which uses `require` to load modules. This version of the package works with the following CI servers:
-- Azure Devops
+- Appveyor
+- Azure Devops/Pipelines
+- Bamboo
 - Bitbucket
+- Bitrise
+- Buddy
+- Buildkite
 - CircleCI
+- Cirrus CI
+- Cloudflare Pages
+- AWS CodeBuild
+- Codefresh
+- Codeship
+- Drone
 - GitHub Actions
 - GitLab CI
 - Jenkins
+- JetBrains Space
+- Netlify
+- Puppet
+- Sail CI
+- Screwdriver.cd
+- Scrutinizer
+- Semaphore
+- Shippable
 - TeamCity
-- Travis
+- Travis CI
+- Vela
+- Vercel
+- Wercker
+- Woodpecker CI
 
 If the tests are run on a local machine, then the sub section heading will indicate this.
 <img align="center" src="./docs/html_summary_suite_details.png" alt="CI/CD server details" width="100%" />
 
 
 ### Summary Section
-<img align="center" src="./docs/html_summary_section.png" alt="CI/CD server details" width="100%" />
+<img align="center" src="./docs/ci_local.png" alt="CI/CD server details" width="100%" />
 
 #### Test Suite Summary
 This section provides an overall status of how many tests:
@@ -92,6 +128,20 @@ This section provides an overall status of how many test steps:
 This section also provides metrics for:
 - `Passed Rate` of test steps executed, whch uses the formula `(passed test steps / total executed Test steps) * 100`.
 - `Steps/s` steps executed per second, which uses the formula `(passed test steps + failed test steps) / total execution time in seconds`. This metric can be used to comapre against manual test execution rates. 
+
+
+#### Risk Summary
+This section details the risks/confidence of your test suite. It assesses whether you have run any flaky tests (requires your test to have a `@flaky` tag in the title). It assesses how many tests were skipped and whether any of those skipped tests were flaky. And finally it takes those assesments and adjusts your passed Rate percentage in to a confidence percentage.
+
+**Passed Rate** = tests passed /  (total tests - tests skipped) * 100  \
+**Coverage** = (total tests - skipped tests) /  total tests * 100 \
+**flaky percentage** = flaky tests executed  /  (total tests) * 100 \
+**penalty ratio** = 0.4 \
+**flaky penalty** = flaky percentage * penalty ratio \
+**confidence** = Passed Rate * (1 - flaky penalty/100) * (1 - coverage/100)
+
+This section is first broken down by total risk and test phase risk. 
+Another section the breaks down the risk associated with each component (tags that are not test phases)
 
 
 ### Suites Section
@@ -222,21 +272,22 @@ The summary reports can be configured in the reporter options:
 
 | Option Name | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
-| `consoleSummary` | boolean | true | option to turn off the summary in the console log by setting to false. |
-| `textFileSummary`| boolean | true | option to turn off the summary in a text file by setting to false. |
-| `htmlSummary` | boolean | true | option to turn off the summary in a text file by setting to false. |
-| `projectName` | string  | '--' | process.env variable name that denotes the name of the project. |
-| `projectVersion` | string  | '--' | process.env variable name that denotes the version of the project being tested. |
-| `projectCycle` | string  | '--' | process.env variable name that denotes the test cycle name of the test execution. |
-| `environmentVar` | string  | '--' | process.env variable name that denotes the test environment. |
-| `tagPrefix` | string  | '@'  | Prefix to be used to capture tags used in the tests. |
-| `testIDPrefix` | string  | '$'  | Prefix to be used to capture the test ID used in the tests. |
-| `passRateGreen` | string  | '90' | Value used to determine the background colour of the overall success rate of which is deemed acceptable. |
-| `passRateAmber` | string  | '50' | Value used to determine the background colour of the overall success rate of which is deemed a warning. |
-| `output` | string  | 'test_report' | Folder location to be used to save summary report to. |
-| `otherReportLink` | string  | undefined  | File location of any other reports created at the end of the test execution. |
-| `includeMochaBase` | true | option to turn off the Mocha Base reporter in the console. Mocha-multi-reporters includes Base reporting which duplicates this reporters output. |
-| `manualTestLink` | string  | undefined | process.env variable name that contains the base URL of your test management application. The `testIDPrefix` value is suffixed to this URL to create the full link. |
+| consoleSummary | boolean | true | option to turn off the summary in the console log by setting to false. |
+| textFileSummary| boolean | true | option to turn off the summary in a text file by setting to false. |
+| htmlSummary | boolean | true | option to turn off the summary in a text file by setting to false. |
+| tagPrefix | string  | '@'  | Prefix to be used to capture tags used in the tests. |
+| testIDPrefix | string  | '$'  | Prefix to be used to capture the test ID used in the tests. |
+| testPhases | Array[string]  | ['smoke', 'regression']  | You can override the default values with tagged test phases in your tests. e.g ['unit', 'integration', 'e2e'] |
+| passRateGreen | string  | '90' | Value used to determine the background colour of the overall success rate of which is deemed acceptable. |
+| passRateAmber | string  | '50' | Value used to determine the background colour of the overall success rate of which is deemed a warning. |
+| output | string  | 'test_report' | Folder location to be used to save summary report to. |
+| otherReportLink | string  | undefined  | File location of any other reports created at the end of the test execution. |
+| includeMochaBase | true | option to turn off the Mocha Base reporter in the console. Mocha-multi-reporters includes Base reporting which duplicates this reporters output. |
+| manualTestLink | string  | undefined | process.env variable name that contains the base URL of your test management application. The testIDPrefix value is suffixed to this URL to create the full link. |
+| projectName | string  | '--' | process.env variable name that denotes the name of the project. |
+| projectVersion | string  | '--' | process.env variable name that denotes the version of the project being tested. |
+| projectCycle | string  | '--' | process.env variable name that denotes the test cycle name of the test execution. |
+| environmentVar | string  | '--' | process.env variable name that denotes the test environment. |
 
 
 The process.env variables can be set up in many ways:
@@ -245,3 +296,35 @@ The process.env variables can be set up in many ways:
 - from your CI application.
 
 
+## Process Environment Variables
+The summary reports can be configured to get information from the process.env, these can be added by either your CI/CD job or if you are running the tests for your local machine there is a envData section in the [./config/default.json](./config/default.json). In the mocharc.js  file, in the require section, a script runs before the tests iterate through the envData section and creates process.env variables, IF they are not already set up by you CI/CD applicaiton.
+ You can name these whatever you like, but you must rememeber to refer to that env name in the reporter options section of this defaul.json file :
+
+| Option Name | Type | Description |
+| :--- | :--- | :--- |
+| TESTENV | string | the name of the test environment |
+| PROJECT_NAME | string | the name of the project |
+| RELEASE_VERSION | string | the name of the project version |
+| TEST_CYCLE | string | the name of the test cycle |
+| TMS_URL | string | the base url for you test management server |
+
+E.g.
+```json
+{
+       "mochaSummaryReportReporterOptions": {
+        "environmentVar": "TESTENV",
+        "projectName": "PROJECT_NAME",
+        "projectVersion": "RELEASE_VERSION",
+        "projectCycle": "TEST_CYCLE",
+        "manualTestLink": "TMS_URL"
+    },
+    "envData": {
+        "TESTENV": "dev",
+        "ZEPHYR_UPDATE": "no",
+        "PROJECT_NAME": "proj1",
+        "RELEASE_VERSION": "1",
+        "TEST_CYCLE": "Cycle 123",
+        "TMS_URL": "https://company.domain/jira/browse/"
+    } 
+}
+```
