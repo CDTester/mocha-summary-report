@@ -18,7 +18,7 @@
       .font-size-085em { font-size: 0.85em; font-weight: normal; line-height: 150%; }
       .font-size-075em { font-size: 0.75em; font-weight: normal; line-height: 150%; }
       .font-size-06em { font-size: 0.6em; font-weight: normal; line-height: 150%; }
-      .padding-left-right-15 { padding-left: 15px; padding-right: 15px; }
+      .padding-left-right-15 { padding-left: 15px; padding-right: 15px; max-width: none;}
       .padding-top-bottom-15 {padding-top: 15px; padding-bottom: 15px; max-width: none;}
       .padding-left-right-10 { padding-left: 10px; padding-right: 10px; }
       .padding-left-right-5 { padding-left: 5px; padding-right: 5px; }
@@ -39,29 +39,30 @@
       .table-font-14 { font-size: 14px; }
       .icon { width:4em; height: 4em; }
       .table-padding-5 {padding: 5px}
+      @media only screen and (max-width: 800px) {.col-hide {display:none}}
       .label-flaky {background-color: orangered;}
       .label-test-phase {background-color: darkgrey;}
+      .container-max-width {max-width: 1400px;}
     </style>
   </head>
 
   <body class="stripes">
-    <br /><br />
-
+    
     <!-- Suite details -->
-    <div class="container padding-left-right-15 padding-top-bottom-15">
+    <div class="container padding-left-right-15 padding-top-bottom-15 font-size-085em container-max-width">
       {{{info}}}
       {{{ciServer}}}
     </div>
     <div class="clearfix"></div>
 
     <!-- SUMMARY -->
-    <div class="container padding-left-right-15 padding-top-bottom-15">
+    <div class="container padding-left-right-15 padding-top-bottom-15 font-size-085em container-max-width">
       {{{summary}}}
     </div>
     <div class="clearfix"></div>
 
     <!-- Test Cases -->
-    <div class="container padding-left-right-15 padding-top-bottom-15">
+    <div class="container padding-left-right-15 padding-top-bottom-15 font-size-085em container-max-width">
           {{{tests}}}
     </div>
     <div class="clearfix"></div>

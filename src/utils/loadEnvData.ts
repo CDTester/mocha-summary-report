@@ -33,7 +33,6 @@ export default class envData {
     }
 
     const pth = path.resolve(process.cwd(), 'config', 'environments', `${envData.instance.env}.json`);
-    //console.log(`\x1b[92m Using environment config from ${pth} for test ${this._test}  \x1b[0m`);
 
     if (fs.existsSync(pth)) {
       try {
@@ -41,12 +40,12 @@ export default class envData {
       }
       catch (error) {
         if (error instanceof Error) {
-          throw new Error(`<FATAL> Cannot load/parse the environment data: ${error.message}`);
+          throw new Error(`<ERROR> Cannot load/parse the environment data: ${error.message}`);
         }
       }
     }
     else {
-      throw new Error(`<FATAL> Cannot find the environment file: ${pth}`);
+      throw new Error(`<ERROR> Cannot find the environment file: ${pth}`);
     }
 	return JSON.parse(JSON.stringify(envData.instance._envData));
 	}

@@ -32,8 +32,9 @@ function saveReport (folderName, fileName, html) {
     fs.writeFileSync(filePath, html);
     console.log(`[\x1b[90mmocha-summary-report\x1b[0m]: HTML report saved to folder ${filePath}\x1b[0m`);
   }
-  catch {
+  catch (error) {
     console.error(`[\x1b[90mmocha-summary-report\x1b[0m]: \x1b[31m ERROR:\x1b[33m Failed to save HTML report to folder ${filePath}\x1b[0m`);
+    console.error(`[\x1b[90mmocha-summary-report\x1b[0m]: \x1b[31m ERROR:\x1b[33m ${error.message}\x1b[0m`);
   }
 }
 

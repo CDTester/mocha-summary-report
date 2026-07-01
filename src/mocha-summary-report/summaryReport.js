@@ -223,6 +223,7 @@ function summaryReport (summary, config) {
     const consoleSummary = (config.reporterOptions.consoleSummary === undefined) ? 'false' : config.reporterOptions.consoleSummary;
     const textFileSummary = (config.reporterOptions.textFileSummary === undefined) ? 'false' : config.reporterOptions.textFileSummary;
     const htmlSummary = (config.reporterOptions.htmlSummary === undefined) ? 'false' : config.reporterOptions.htmlSummary;
+
     if (consoleSummary === 'true') summaryGenerator.summaryReportConsole(results);
     if (textFileSummary === 'true') summaryGenerator.summaryReportEmail(results, config);
     if (htmlSummary === 'true') summaryGenerator.summaryReportHtml(results, config);

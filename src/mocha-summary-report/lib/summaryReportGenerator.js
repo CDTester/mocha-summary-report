@@ -80,14 +80,14 @@ async function summaryReportHtml (result, config) {
 
   try {
     // build up sections to go in report.html template
-    const data = {
-      info: await buildHtmlSection('info.html', result.info),
-      summary: await buildHtmlSection('summary.html', result.summary),
-      tests: await buildHtmlSection('testCases.html', result.tests)
+    const sections = {
+      info: await buildHtml('info.html', result.info),
+      summary: await buildHtml('summary.html', result.summary),
+      tests: await buildHtml('testCases.html', result.tests)
     };
 
     // build report template
-    const html = await buildHtmlSection('report.html', data, true);
+    const html = await buildHtml('report.html', sections, true);
 
     // save report to config.reporterOptions.output
     const endPath = config.reporterOptions.output || 'test_report';
@@ -111,7 +111,7 @@ async function summaryReportHtml (result, config) {
  * @param {object} data data to be used by the template
  * @return {string} built html
 */
-async function buildHtmlSection (templateName, data) {
+async function buildHtml (templateName, data) {
   let html;
   if (data) {
     const template = path.resolve(__dirname, '..', 'templates', templateName);
